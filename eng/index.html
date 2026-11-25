@@ -712,7 +712,7 @@ Promise.resolve(window.__PROGRAM__).then(async data=>{
 
 <script>
 (async()=>{
-const APP="eng", KEYID="4f1abbcfcec7db37", STORE='mkey:'+APP;
+const APP="eng", KEYID="a255d114ff5f0518", STORE='mkey:'+APP;
 const $=s=>document.querySelector(s), b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const te=new TextEncoder(), td=new TextDecoder();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
