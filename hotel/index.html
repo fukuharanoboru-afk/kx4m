@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>ホテルの受付係の英会話（迎える側）</title><meta name="theme-color" content="#7a4f8f"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ホテル英語"><style>
+#lock{max-width:420px;margin:12vh auto 0;padding:24px 16px;font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;color:#1d2330}
+#lock h1{font-size:1.25rem;margin:0 0 8px}
+#lock p{margin:0 0 16px;color:#4a5263;line-height:1.6}
+#lock input{width:100%;box-sizing:border-box;font-size:1.1rem;padding:12px;border:1px solid #c5cbd6;border-radius:8px}
+#lock button{width:100%;margin-top:12px;font-size:1.05rem;padding:12px;border:0;border-radius:8px;background:#7a4f8f;color:#fff}
+#lock label{display:flex;gap:8px;align-items:center;margin-top:12px;color:#4a5263}
+body.locked>:not(#lock){display:none!important}
+#lock .msg{min-height:1.6em;margin-top:12px;color:#a33}
+@media (prefers-color-scheme:dark){#lock{color:#e8ebf1}#lock p,#lock label{color:#b8bfcc}#lock input{background:#1d2330;color:#e8ebf1;border-color:#4a5263}}
+</style></head><body class="locked">
+<div id="lock" hidden><h1>ホテルの受付係の英会話（迎える側）</h1><p>合言葉を入れてください。一度開けば、この携帯では電波が無くても使えます。</p><form id="lockf"><input id="pass" type="password" autocomplete="current-password" aria-label="合言葉" required><label><input type="checkbox" id="remember" checked style="width:auto">この携帯に覚えさせる</label><button type="submit">開く</button><div class="msg" role="status"></div></form></div>
+<meta charset="utf-8"><title>ホテルの受付係の英会話（迎える側）</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* 方眼の教務帳: 分野×段階のマス目を主役に、コマを開くと右（狭い画面では下）に学習カード */
+:root{
+  --bg:#f6f7f4; --panel:#ffffff; --ink:#1d2622; --muted:#5d6a63; --line:#d9dfd9;
+  --accent:#1f6f5c; --accent-soft:#dcefe8; --pass:#2f7d4f; --pass-soft:#d9f0df;
+  --near:#b7791f; --near-soft:#f8ebcf; --fail:#b23b3b; --fail-soft:#f6dddd; --skip:#6b7a8f; --skip-soft:#e3e8ef;
+  --head:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif; --body:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141a17; --panel:#1c2420; --ink:#e7ece9; --muted:#9db0a6; --line:#2f3a35;
+  --accent:#6cc3a8; --accent-soft:#1f3b33; --pass:#74c995; --pass-soft:#1f3a2a; --near:#e0b25c; --near-soft:#3d321b;
+  --fail:#ef8a8a; --fail-soft:#432526; --skip:#9fb0c8; --skip-soft:#283240; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a17; --panel:#1c2420; --ink:#e7ece9; --muted:#9db0a6; --line:#2f3a35;
+  --accent:#6cc3a8; --accent-soft:#1f3b33; --pass:#74c995; --pass-soft:#1f3a2a; --near:#e0b25c; --near-soft:#3d321b;
+  --fail:#ef8a8a; --fail-soft:#432526; --skip:#9fb0c8; --skip-soft:#283240; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1180px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--head);text-wrap:balance;margin:0}
+h1{font-size:1.6rem}
+h2{font-size:1.2rem}
+h3{font-size:1.02rem}
+.sub{color:var(--muted);font-size:.9rem}
+header{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between;margin-bottom:16px}
+.meter{display:flex;gap:16px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.meter div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 12px;min-width:84px}
+.meter b{display:block;font-size:1.25rem;font-family:var(--head)}
+.meter span{font-size:.75rem;color:var(--muted);letter-spacing:.04em}
+.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.gridbox{overflow-x:auto}
+table.grid{border-collapse:separate;border-spacing:3px;font-variant-numeric:tabular-nums}
+table.grid th{font-size:.72rem;color:var(--muted);font-weight:500;padding:2px 4px;text-align:center;white-space:nowrap}
+table.grid th.fname{text-align:left;font-size:.82rem;color:var(--ink);font-weight:700;padding-right:8px;max-width:9em}
+table.grid td button{min-width:42px;height:32px;padding:0 3px;font-weight:700;border-radius:5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:.72rem;cursor:pointer;font-family:var(--body)}
+table.grid td button:hover{border-color:var(--accent)}
+table.grid td button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+table.grid td button.st-pass{background:var(--pass);border-color:var(--pass);color:var(--panel)}
+table.grid td button.st-near{background:var(--near-soft);border:2px solid var(--near);color:var(--near)}
+table.grid td button.st-fail{background:var(--fail-soft);border:2px solid var(--fail);color:var(--fail)}
+table.grid td button.st-skip{background:var(--skip-soft);border-color:var(--skip);color:var(--skip)}
+table.grid td button.cur{outline:3px solid var(--ink);outline-offset:2px}
+.band{font-size:.7rem;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.78rem;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px;border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font-family:var(--body);font-size:.9rem;border-radius:7px;border:1px solid var(--accent);background:var(--accent);color:var(--panel);padding:8px 16px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.tag{display:inline-block;font-size:.72rem;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);letter-spacing:.03em}
+dl.info{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:10px 0;font-size:.9rem}
+dl.info dt{color:var(--muted)}
+dl.info dd{margin:0}
+.learn{background:var(--accent-soft);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:.92rem}
+.q{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.q p{margin:0 0 6px}
+.q label{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border-radius:6px;cursor:pointer}
+.q label:hover{background:var(--accent-soft)}
+.q input{margin-top:5px}
+.q textarea{width:100%;min-height:90px;font:inherit;padding:8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);box-sizing:border-box}
+.res{border-radius:6px;padding:8px 10px;margin-top:6px;font-size:.9rem}
+.res.ok{background:var(--pass-soft)}
+.res.ng{background:var(--fail-soft)}
+.res b{font-family:var(--head)}
+.verdict{border-radius:8px;padding:12px;margin-top:16px}
+.verdict.pass{background:var(--pass-soft)}
+.verdict.near{background:var(--near-soft)}
+.verdict.fail{background:var(--fail-soft)}
+.verdict ol{margin:6px 0 0;padding-left:1.4em}
+pre.prompt{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px;font-size:.84rem;margin:8px 0}
+.empty{color:var(--muted);padding:24px 4px}
+.next{margin-top:12px;font-size:.9rem}
+.speak{font-size:.85rem;padding:4px 12px}
+.hist{font-size:.8rem;color:var(--muted);margin-top:8px}
+.place{margin-top:12px}
+.place details{border-top:1px solid var(--line);padding-top:10px}
+.place summary{cursor:pointer;font-weight:700;font-family:var(--head)}
+.place .pq{display:flex;gap:10px;align-items:flex-start;padding:4px 0;font-size:.9rem}
+.save{font-size:.78rem;color:var(--muted)}
+
+.journey{margin-bottom:20px}
+.jstat{gap:6px 14px;font-size:.85rem;color:var(--muted)}
+.jstat b{color:var(--ink);font-family:var(--head)}
+.jbadge{background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:2px 12px}
+.jbadge b{color:var(--accent)}
+.jstops{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px;margin-top:10px}
+.jcard{display:flex;flex-direction:column;gap:2px;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px;cursor:pointer;font-family:var(--body);color:var(--ink);min-width:0}
+.jcard:hover{border-color:var(--accent)}
+.jcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.jcard.done{border-color:var(--pass)}
+.jimg{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;border-radius:5px;background:var(--line)}
+.jimg img{width:100%;height:100%;object-fit:cover;display:block}
+.jcover{position:absolute;inset:0;display:grid;grid-template-columns:repeat(7,1fr)}
+.jcover i{background:var(--panel);border-right:1px dashed var(--line);transition:opacity .6s}
+.jcover i.open{opacity:0}
+.jcard.locked .jimg img,.lockimg img{filter:grayscale(1) blur(6px) brightness(1.15)}
+.jname{font-size:.82rem;font-weight:700;line-height:1.35}
+.jsub{font-size:.72rem;color:var(--muted)}
+.jcard.goal{border-width:2px}
+.jname-in{font:inherit;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0;width:14em;max-width:100%}
+dialog#jdlg{max-width:min(720px,92vw);max-height:92vh;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:18px}
+dialog#jdlg::backdrop{background:rgba(0,0,0,.45)}
+.jimg.big{aspect-ratio:3/2;margin:10px 0;max-height:52vh}
+.jen{font-family:var(--head);font-weight:700;margin:4px 0}
+.jsay{font-size:1.05rem;line-height:1.7}
+#jtoast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--panel);padding:12px 18px;border-radius:10px;font-size:.92rem;z-index:20;max-width:min(560px,92vw);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<style>
+/* 学びの部品（learn_kit.js）の見た目。色は講座の画面の --accent・--pass・--fail・--line・--muted・--ink・--panel・--bg を使う */
+.lk-panel{margin-bottom:20px}
+.lk-head{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;justify-content:space-between}
+.lk-sub{color:var(--muted);font-size:.8rem}
+.lk-dash{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:8px}
+@media (max-width:760px){.lk-dash{grid-template-columns:minmax(0,1fr)}}
+.lk-radar{width:100%;max-width:400px;height:auto;display:block;margin:0 auto;overflow:visible}
+.lk-ring{fill:none;stroke:var(--line);stroke-width:1}
+.lk-axis{stroke:var(--line);stroke-width:1}
+.lk-rate{fill:var(--accent);fill-opacity:.22;stroke:var(--accent);stroke-width:2}
+.lk-reach{fill:none;stroke:var(--pass);stroke-width:2;stroke-dasharray:5 4}
+.lk-lab{fill:var(--ink);font-size:11px;font-family:var(--body)}
+.lk-legend{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:.78rem;color:var(--muted)}
+.lk-legend i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:4px}
+.lk-k-rate{background:var(--accent)}
+.lk-k-reach{background:repeating-linear-gradient(90deg,var(--pass) 0 5px,transparent 5px 9px)}
+.lk-table{width:100%;border-collapse:collapse;font-size:.85rem;font-variant-numeric:tabular-nums}
+.lk-table th,.lk-table td{padding:3px 6px;border-bottom:1px solid var(--line);text-align:left}
+.lk-table td+td,.lk-table th+th{text-align:right;white-space:nowrap}
+.lk-next,.lk-boxline{margin-top:12px;font-size:.9rem;line-height:1.7}
+.lk-boxline{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.lk-btn{font-family:var(--body);font-size:.85rem;border-radius:7px;border:1px solid var(--accent);background:transparent;color:var(--accent);padding:5px 12px;cursor:pointer;margin-top:4px}
+.lk-btn.lk-strong{background:var(--accent);color:var(--panel)}
+.lk-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.lk-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.lk-detail{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:.9rem}
+.lk-detail p{margin:0 0 6px}
+.lk-detail ul{margin:4px 0 6px;padding-left:1.2em}
+.lk-others summary{cursor:pointer;color:var(--accent);font-size:.88rem}
+.lk-mine{background:var(--fail-soft);border-radius:6px;padding:6px 8px}
+.lk-fix{background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--near);border-radius:6px;padding:8px 10px;margin-top:6px}
+.lk-note{color:var(--muted);font-size:.8rem}
+.lk-card{border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:14px;background:var(--bg)}
+.lk-card p{margin:6px 0}
+.lk-ch{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border-radius:6px;cursor:pointer}
+.lk-ch input{margin-top:5px}
+.lk-res{border-radius:6px;padding:8px 10px;margin-top:8px;font-size:.9rem}
+.lk-ok{background:var(--pass-soft)}
+.lk-ng{background:var(--fail-soft)}
+.lk-done{margin-top:12px;font-weight:700}
+@keyframes lk-flash{0%{box-shadow:0 0 0 4px var(--near)}100%{box-shadow:0 0 0 0 transparent}}
+.lk-flash{animation:lk-flash 1.8s ease-out}
+@media (prefers-reduced-motion: reduce){.lk-flash{animation:none;outline:3px solid var(--near)}}
+</style>
+<script type="text/plain" class="app-js">
+/* 学びの部品（どの講座でも共通）: 詳しい解説・間違えたときの対策・復習の箱・分野ごとのレーダーチャート・次にやる段
+ *
+ * 使い方（講座の画面の側）:
+ *   const kit = LearnKit.create({ program, status, open, mount, focus, say });
+ *     program: { programId, fields: {A:'分野名',...}, units: [{ id, field, level, title, learn, questions: [...] }] }
+ *              選ぶ問 { q, choices, answer, explain, listen?, detail? } ／書く問 { type:'write', ... }
+ *              detail = { why, wrong: {まちがいの選択肢の文: 違う理由}, tip, action, review: { unit, where } }
+ *     status(id) → 'pass' | 'near' | 'fail' | 'skip' | 'todo'（その講座の合格の決め方）
+ *     open(id)   → その段を開く（「読み直す所」のボタンで使う）
+ *     mount      → 成績の板（レーダーチャート・次にやる段・復習の箱）を描く要素
+ *     focus      → 段を開いた後に光らせて見せる所（既定 '.learn'＝要点）
+ *     say(text)  → 英文を流す（無ければ聞くボタンを出さない）
+ *   採点のとき: html += kit.feedback(q, 選んだ番号, 正解か)   採点が終わったら: kit.record(unit, [正解か...], [選んだ番号...])
+ * 成績と復習の箱はこの端末のブラウザ（localStorage 'learn-kit-<programId>'）に残す。
+ */
+(function () {
+  'use strict';
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const shuffle = n => { const a = [...Array(n).keys()]; for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  function create(opt) {
+    const P = opt.program, focus = opt.focus || '.learn', KEY = 'learn-kit-' + (P.programId || P.name || 'x');
+    const units = {}; P.units.forEach(u => { units[u.id] = u; });
+    let st = { last: {}, box: {} };
+    try { const v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v) st = Object.assign(st, v); } catch (e) {}
+    const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+    const qOf = k => { const [id, i] = k.split('#'); const u = units[id]; return u && u.questions[+i] ? { u, i: +i, q: u.questions[+i] } : null; };
+
+    /* ---------- 詳しい解説と対策 ---------- */
+    function feedback(q, chosen, ok) {
+      const d = q.detail; if (!d) return '';
+      let h = '<div class="lk-detail">';
+      if (d.why) h += '<p><b>' + (q.type === 'write' ? '書き方の考え方' : '正解の理由') + '<\/b> ' + esc(d.why) + '<\/p>';
+      const w = d.wrong || {}, mine = q.choices && chosen >= 0 && chosen !== q.answer ? q.choices[chosen] : null;
+      if (mine && w[mine]) h += '<p class="lk-mine"><b>選んだ「' + esc(mine) + '」が違う理由<\/b> ' + esc(w[mine]) + '<\/p>';
+      const others = Object.entries(w).filter(([c]) => c !== mine);
+      if (others.length) h += '<details class="lk-others"><summary>' + (mine ? 'ほかの' : '') + 'まちがいの選択肢が違う理由<\/summary><ul>'
+        + others.map(([c, t]) => '<li><b>' + esc(c) + '<\/b>：' + esc(t) + '<\/li>').join('') + '<\/ul><\/details>';
+      if (d.tip) h += '<p><b>覚え方<\/b> ' + esc(d.tip) + '<\/p>';
+      if (!ok) {
+        const r = d.review || {}, ru = units[r.unit];
+        h += '<div class="lk-fix"><p><b>対策<\/b> ' + esc(d.action || '') + '<\/p>';
+        if (ru) h += '<p><b>読み直す所<\/b> ' + esc(ru.id + '「' + ru.title + '」') + (r.where ? ' の ' + esc(r.where) : '')
+          + ' <button class="lk-btn" type="button" data-lk-go="' + esc(ru.id) + '">' + esc(ru.id) + ' を開いて読む<\/button><\/p>';
+        if (q.choices) h += '<p class="lk-note">この問いは復習の箱に入りました。正解するまで出し直します。<\/p>';
+        h += '<\/div>';
+      }
+      return h + '<\/div>';
+    }
+    function go(id) {
+      opt.open(id);
+      setTimeout(() => {
+        const el = document.querySelector(focus); if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.remove('lk-flash'); void el.offsetWidth; el.classList.add('lk-flash');
+      }, 60);
+    }
+    document.addEventListener('click', e => { const b = e.target.closest('[data-lk-go]'); if (b) { e.preventDefault(); go(b.dataset.lkGo); } });
+
+    /* ---------- 記録（1 問ごとの最後の結果と復習の箱） ---------- */
+    function mark(k, ok) {
+      st.last[k] = ok ? 1 : 0;
+      if (ok) delete st.box[k]; else st.box[k] = { miss: ((st.box[k] || {}).miss || 0) + 1, at: Date.now() };
+    }
+    function record(u, res, chosen) {
+      u.questions.forEach((q, i) => { if (q.choices && res[i] !== null && res[i] !== undefined) mark(u.id + '#' + i, !!res[i]); else if (res[i] !== null && res[i] !== undefined) st.last[u.id + '#' + i] = res[i] ? 1 : 0; });
+      save(); draw();
+    }
+
+    /* ---------- 分野ごとの成績 ---------- */
+    function stats() {
+      return Object.entries(P.fields).map(([f, name]) => {
+        const us = P.units.filter(u => u.field === f);
+        let n = 0, c = 0; us.forEach(u => u.questions.forEach((q, i) => { const v = st.last[u.id + '#' + i]; if (v !== undefined) { n++; c += v; } }));
+        const passed = us.filter(u => opt.status(u.id) === 'pass').length;
+        return { f, name, rate: n ? c / n : 0, answered: n, reach: us.length ? passed / us.length : 0, passed, total: us.length };
+      });
+    }
+    function nextUnit(S) {
+      const tried = S.filter(s => s.answered), pool = (tried.length ? tried : S).slice().sort((a, b) => (a.rate + a.reach) - (b.rate + b.reach));
+      for (const s of pool) {
+        const u = P.units.filter(x => x.field === s.f).sort((a, b) => a.level - b.level).find(x => opt.status(x.id) !== 'pass' && opt.status(x.id) !== 'skip');
+        if (u) return { u, s };
+      }
+      return null;
+    }
+    function radar(S) {
+      const n = S.length, R = 92, cx = 160, cy = 130, pt = (i, v) => { const a = -Math.PI / 2 + 2 * Math.PI * i / n; return [cx + R * v * Math.cos(a), cy + R * v * Math.sin(a)]; };
+      const poly = vals => vals.map((v, i) => pt(i, Math.max(v, 0.02)).map(x => x.toFixed(1)).join(',')).join(' ');
+      let g = '';
+      [0.25, 0.5, 0.75, 1].forEach(r => { g += '<polygon class="lk-ring" points="' + poly(S.map(() => r)) + '"/>'; });
+      S.forEach((s, i) => { const [x, y] = pt(i, 1); g += '<line class="lk-axis" x1="' + cx + '" y1="' + cy + '" x2="' + x.toFixed(1) + '" y2="' + y.toFixed(1) + '"/>'; });
+      g += '<polygon class="lk-reach" points="' + poly(S.map(s => s.reach)) + '"/>';
+      g += '<polygon class="lk-rate" points="' + poly(S.map(s => s.rate)) + '"/>';
+      S.forEach((s, i) => {
+        const [x, y] = pt(i, 1.22), anchor = Math.abs(x - cx) < 8 ? 'middle' : (x > cx ? 'start' : 'end');
+        g += '<text class="lk-lab" x="' + x.toFixed(1) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="' + anchor + '">' + esc(s.f) + ' ' + (s.answered ? Math.round(s.rate * 100) + '%' : '—') + '<\/text>';
+      });
+      return '<svg class="lk-radar" viewBox="0 0 320 262" role="img" aria-label="分野ごとの正解率と到達度">' + g + '<\/svg>';
+    }
+
+    /* ---------- 成績の板 ---------- */
+    let reviewing = false;
+    function draw() {
+      if (!opt.mount || reviewing) return;
+      const S = stats(), nx = nextUnit(S), boxN = Object.keys(st.box).filter(qOf).length;
+      let h = '<div class="lk-head"><h2>分野ごとの到達度<\/h2><span class="lk-sub">この端末に残しています<\/span><\/div><div class="lk-dash"><div>' + radar(S)
+        + '<div class="lk-legend"><span><i class="lk-k-rate"><\/i>正解率（最後に解いた結果）<\/span><span><i class="lk-k-reach"><\/i>到達度（合格した段の割合）<\/span><\/div><\/div><div class="lk-side">';
+      h += '<table class="lk-table"><thead><tr><th>分野<\/th><th>正解率<\/th><th>合格<\/th><\/tr><\/thead><tbody>'
+        + S.map(s => '<tr><td>' + esc(s.f + ' ' + s.name) + '<\/td><td>' + (s.answered ? Math.round(s.rate * 100) + '%' : '—') + '<\/td><td>' + s.passed + '/' + s.total + '<\/td><\/tr>').join('') + '<\/tbody><\/table>';
+      if (nx) h += '<div class="lk-next"><b>次にやる段<\/b> ' + esc(nx.u.id + '「' + nx.u.title + '」') + '<br><span class="lk-sub">' + (nx.s.answered ? 'いちばん伸びしろのある分野「' + esc(nx.s.name) + '」から' : 'まだ始めていない分野から') + '<\/span><br><button class="lk-btn" type="button" data-lk-open="' + esc(nx.u.id) + '">' + esc(nx.u.id) + ' を開く<\/button><\/div>';
+      h += '<div class="lk-boxline"><b>復習の箱<\/b> ' + boxN + ' 問' + (boxN ? '<button class="lk-btn lk-strong" type="button" data-lk-review>復習する<\/button>' : '<span class="lk-sub">（間違えた問いがここにたまります）<\/span>') + '<\/div><\/div><\/div><div id="lk-review"><\/div>';
+      opt.mount.innerHTML = h;
+      const o = opt.mount.querySelector('[data-lk-open]'); if (o) o.addEventListener('click', () => opt.open(o.dataset.lkOpen));
+      const r = opt.mount.querySelector('[data-lk-review]'); if (r) r.addEventListener('click', review);
+    }
+
+    /* ---------- 復習の箱（正解するまで出し直す） ---------- */
+    function review() {
+      reviewing = true;
+      const keys = Object.keys(st.box).filter(qOf).sort((a, b) => st.box[b].miss - st.box[a].miss || st.box[a].at - st.box[b].at);
+      const area = opt.mount.querySelector('#lk-review');
+      let idx = 0;
+      const show = () => {
+        if (idx >= keys.length) { reviewing = false; draw(); const left = Object.keys(st.box).filter(qOf).length; const a = opt.mount.querySelector('#lk-review'); if (a) a.innerHTML = '<p class="lk-done">' + (left ? 'ひと回りしました。まだ ' + left + ' 問が箱に残っています。もう一度「復習する」で出し直します。' : '箱は空になりました。よくがんばりました！') + '<\/p>'; return; }
+        const { u, i, q } = qOf(keys[idx]), ord = shuffle(q.choices.length);
+        area.innerHTML = '<div class="lk-card"><div class="lk-sub">復習 ' + (idx + 1) + ' / ' + keys.length + '　' + esc(u.id + '「' + u.title + '」') + '<\/div><p><b>' + esc(q.q) + '<\/b><\/p>'
+          + (q.listen && opt.say ? '<button class="lk-btn" type="button" data-lk-say>英語を聞く<\/button>' : '')
+          + '<form data-lk-form>' + ord.map(k => '<label class="lk-ch"><input type="radio" name="lkq" value="' + k + '"><span>' + esc(q.choices[k]) + '<\/span><\/label>').join('')
+          + '<div class="lk-row"><button class="lk-btn lk-strong" type="submit">答える<\/button><button class="lk-btn" type="button" data-lk-stop>やめる<\/button><\/div><\/form><div data-lk-out><\/div><\/div>';
+        const sy = area.querySelector('[data-lk-say]'); if (sy) sy.addEventListener('click', () => opt.say(q.listen));
+        area.querySelector('[data-lk-stop]').addEventListener('click', () => { reviewing = false; draw(); });
+        area.querySelector('[data-lk-form]').addEventListener('submit', e => {
+          e.preventDefault();
+          const sel = area.querySelector('input[name="lkq"]:checked'); if (!sel) return;
+          const v = +sel.value, ok = v === q.answer; mark(keys[idx], ok); save();
+          area.querySelector('[data-lk-form] .lk-row').remove(); area.querySelectorAll('input[name="lkq"]').forEach(x => { x.disabled = true; });
+          area.querySelector('[data-lk-out]').innerHTML = '<div class="lk-res ' + (ok ? 'lk-ok' : 'lk-ng') + '"><b>' + (ok ? '正解！ 箱から抜けました' : 'もう一歩（正解: ' + esc(q.choices[q.answer]) + '）') + '<\/b>'
+            + (q.explain ? '<br>' + esc(q.explain) : '') + feedback(q, v, ok) + '<\/div><div class="lk-row"><button class="lk-btn lk-strong" type="button" data-lk-next>' + (idx + 1 < keys.length ? '次の問い' : '終わる') + '<\/button><\/div>';
+          area.querySelector('[data-lk-next]').addEventListener('click', () => { idx++; show(); });
+        });
+      };
+      show();
+    }
+
+    // last(): 1 問ごとの最後の結果の写し { '<段の id>#<問の番号>': 1（正解）| 0（不正解） }。分野より細かい集計（中分類のレーダーなど）に使う
+    return { feedback, record, draw, stats, review, box: () => Object.keys(st.box).filter(qOf), last: () => Object.assign({}, st.last) };
+  }
+  window.LearnKit = { create };
+})();
+</script>
+<div class="wrap">
+  <header>
+    <div>
+      <h1 id="pname">読み込み中…</h1>
+      <div class="sub" id="pdesc"></div>
+    </div>
+    <div class="meter" aria-live="polite">
+      <div><b id="m-pass">0</b><span>合格したコマ</span></div>
+      <div><b id="m-todo">0</b><span>学び直し中</span></div>
+      <div><b id="m-left">0</b><span>残り</span></div>
+    </div>
+  </header>
+  <section class="panel lk-panel" id="lk-dash" aria-live="polite"></section>
+
+  <section class="panel journey" id="journey"></section>
+  <div class="layout">
+    <section class="panel">
+      <div class="row" style="justify-content:space-between">
+        <h2>マス目（分野 × 段階）</h2>
+        <button class="btn ghost" id="go-next" type="button">次にやるコマを開く</button>
+      </div>
+      <div class="gridbox"><table class="grid" id="grid"></table></div>
+      <div class="legend">
+        <span><i style="background:var(--panel)"></i>まだ</span>
+        <span><i style="background:var(--pass);border-color:var(--pass)"></i>〇 合格</span>
+        <span><i style="background:var(--near-soft);border-color:var(--near)"></i>△ あと一歩</span>
+        <span><i style="background:var(--fail-soft);border-color:var(--fail)"></i>✕ 学び直し</span>
+        <span><i style="background:var(--skip-soft);border-color:var(--skip)"></i>飛ばしてよい</span>
+      </div>
+      <div class="place" id="place"></div>
+      <p class="save" id="savestate"></p>
+    </section>
+
+    <section class="panel" id="unit" aria-live="polite">
+      <div class="empty">左のマス目からコマを選ぶか、「次にやるコマを開く」を押してください。各コマには理解度テストが 3 問あり、採点すると全問の解説と、合格しなかったときの学び直しの順番が出ます。</div>
+    </section>
+  </div>
+</div>
+<dialog id="jdlg"></dialog><div id="jtoast" role="status" hidden></div>
+<script type="text/plain" class="app-js">
+(function(){
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let P=null, S={units:{},skip:{},placement:{}}, cur=null, db=null, uid=null, sample=null, tts=null;
+const KEY=()=> 'learn-progress-'+(P&&P.programId||'x');
+
+/* ---------- 保存（db があれば本人だけの場所、無ければこの端末） ---------- */
+async function load(){
+  try{const v=localStorage.getItem(KEY()); if(v) S=Object.assign(S,JSON.parse(v));}catch(e){}
+  setSave('この端末のブラウザに保存しています');
+  try{
+    if(window.claude&&claude.use){
+      const user=await claude.use('user'); db=await claude.use('db');
+      if(user&&db){uid=await user.id(); if(uid){
+        const snap=await db.collection('data/users/'+uid).doc('progress-'+P.programId).get();
+        if(snap.exists){const got=Object.assign({units:{},skip:{},placement:{}},snap.data()); for(const [k,v] of Object.entries(S.units)){ if(!got.units[k]||(v.tries||0)>(got.units[k].tries||0)) got.units[k]=v; } S=got; setSave('あなたの学習記録を読み込みました（どの端末からでも続きができます）');}
+        else setSave('学習記録はあなただけが見られる場所に保存されます');
+      }}else setSave('この端末のブラウザに保存しています');
+    }
+  }catch(e){setSave('この端末のブラウザに保存しています');}
+}
+let saving=null;
+async function save(){
+  try{localStorage.setItem(KEY(),JSON.stringify(S));}catch(e){}
+  if(db&&uid){
+    try{ saving=db.collection('data/users/'+uid).doc('progress-'+P.programId).set(JSON.parse(JSON.stringify(S))); await Promise.race([saving,new Promise((_,no)=>setTimeout(()=>no(new Error('timeout')),10000))]); setSave('保存しました（'+new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})+'）'); }
+    catch(e){ setSave('サーバーに保存できませんでした。この端末には保存しています'); }
+  }
+}
+function setSave(t){ $('#savestate').textContent=t; }
+
+/* ---------- 状態 ---------- */
+function status(id){
+  const r=S.units[id];
+  if(r&&r.best===r.total) return 'pass';
+  if(r&&r.last!==undefined){ return (r.total-r.last)<=1 && r.last>0 ? 'near':'fail'; }
+  if(S.skip[id]) return 'skip';
+  return 'todo';
+}
+function units(){return P.units;}
+function byId(id){return P.units.find(u=>u.id===id);}
+function prevUnit(u){return P.units.find(x=>x.field===u.field&&x.level===u.level-1);}
+function nextTodo(){
+  const order=[...P.units].sort((a,b)=>a.level-b.level||a.field.localeCompare(b.field));
+  return order.find(u=>['near','fail'].includes(status(u.id))) || order.find(u=>status(u.id)==='todo') || null;
+}
+function meters(){
+  let p=0,t=0,l=0; for(const u of P.units){const s=status(u.id); if(s==='pass')p++; else if(s==='near'||s==='fail')t++; else l++;}
+  $('#m-pass').textContent=p; $('#m-todo').textContent=t; $('#m-left').textContent=l;
+}
+
+/* ---------- マス目 ---------- */
+function bandOf(l){const b=(P.bands||[[1,5,'基礎'],[6,10,'実践'],[11,15,'応用']]).find(b=>l>=b[0]&&l<=b[1]); return b?b[2]:'';}
+function drawGrid(){
+  const maxL=Math.max(...P.units.map(u=>u.level));
+  let h='<thead><tr><th></th>';
+  for(let l=1;l<=maxL;l++) h+='<th>'+l+(l===1||bandOf(l)!==bandOf(l-1)?'<div class="band">'+esc(bandOf(l))+'</div>':'')+'</th>';
+  h+='</tr></thead><tbody>';
+  for(const [f,name] of Object.entries(P.fields)){
+    h+='<tr><th class="fname" scope="row">'+esc(f)+' '+esc(name)+'</th>';
+    for(let l=1;l<=maxL;l++){const u=P.units.find(x=>x.field===f&&x.level===l);
+      if(!u){h+='<td></td>';continue;}
+      const s=status(u.id);
+      h+='<td><button type="button" data-id="'+u.id+'" class="st-'+s+(cur&&cur.id===u.id?' cur':'')+'" title="'+esc(u.id+' '+u.title)+'" aria-label="'+esc(u.id+' '+u.title)+'">'+esc(u.id)+({pass:'〇',near:'△',fail:'✕',skip:'－'}[s]||'')+'</button></td>';}
+    h+='</tr>';
+  }
+  $('#grid').innerHTML=h+'</tbody>';
+  meters(); drawJourney();
+}
+$('#grid').addEventListener('click',e=>{const b=e.target.closest('button[data-id]'); if(b) openUnit(b.dataset.id);});
+$('#go-next').addEventListener('click',()=>{const n=nextTodo(); if(n) openUnit(n.id); else $('#unit').innerHTML='<div class="empty">全部のコマに合格しています。</div>';});
+
+/* ---------- 位置確認 ---------- */
+function drawPlace(){
+  if(!P.placement) return;
+  let h='<details><summary>はじめに：自分の位置を確かめる</summary><p class="sub">'+esc(P.placement.note||'')+'</p>';
+  P.placement.items.forEach((it,i)=>{
+    h+='<div class="pq"><input type="checkbox" id="pl'+i+'" '+(S.placement[i]?'checked':'')+'><label for="pl'+i+'">'+esc(it.label)+'</label></div>';
+  });
+  h+='<div class="row"><button class="btn ghost" type="button" id="pl-apply">結果をマス目に反映</button></div></details>';
+  $('#place').innerHTML=h;
+  $('#pl-apply').addEventListener('click',()=>{
+    S.skip={};
+    P.placement.items.forEach((it,i)=>{const on=$('#pl'+i).checked; S.placement[i]=on; if(on) for(const id of it.skip) if(!(P.placement.required||[]).includes(id)) S.skip[id]=true;});
+    save(); drawGrid();
+  });
+}
+
+/* ---------- コマ ---------- */
+function shuffleIdx(n){const a=[...Array(n).keys()]; for(let i=n-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a;}
+let order=[], chosen=[], kit=null;
+function openUnit(id){
+  cur=byId(id); drawGrid();
+  const u=cur, r=S.units[id];
+  order=u.questions.map(q=>q.choices?shuffleIdx(q.choices.length):null);
+  let h='<div class="row"><span class="tag">'+esc(u.id)+' ・ '+esc(P.fields[u.field])+' ・ '+esc(bandOf(u.level))+'</span></div>';
+  h+='<h2 style="margin-top:6px">'+esc(u.title)+'</h2>';
+  h+='<dl class="info"><dt>終わりの目安</dt><dd>'+esc(u.goal)+'</dd>';
+  if(u.method) h+='<dt>学び方</dt><dd>'+esc(u.method)+'</dd>';
+  if(u.agent&&u.agent!=='—') h+='<dt>'+esc(P.agentLabel||'使う係')+'</dt><dd>'+esc(u.agent)+'</dd>';
+  if(u.ref&&u.ref!=='—') h+='<dt>参考</dt><dd>'+esc(u.ref)+'</dd>';
+  h+='</dl><div class="learn"><b>要点</b><br>'+esc(u.learn)+'</div>';
+  if(u.teach) h+='<details><summary class="sub">指導の要点（先生向け）</summary><p>'+esc(u.teach)+'</p></details>';
+  h+='<form id="qform"><h3 style="margin-top:14px">理解度テスト（'+u.questions.length+' 問）</h3>';
+  u.questions.forEach((q,i)=>{
+    h+='<div class="q" id="q'+i+'"><p><b>問'+(i+1)+'</b> '+esc(q.q)+'</p>';
+    if(q.listen) h+='<div class="row" style="margin-bottom:6px"><button class="btn ghost speak" type="button" data-say="'+i+'">英語を聞く</button><span class="sub">何度でも聞けます</span></div>';
+    if(q.type==='write'){ h+='<textarea id="w'+i+'" aria-label="答え"></textarea>'; }
+    else order[i].forEach(k=>{ h+='<label><input type="radio" name="a'+i+'" value="'+k+'"><span>'+esc(q.choices[k])+'</span></label>'; });
+    h+='<div id="r'+i+'"></div></div>';
+  });
+  h+='<div class="row" style="margin-top:14px"><button class="btn" type="submit" id="grade">採点する</button></div></form><div id="verdict"></div>';
+  if(r) h+='<p class="hist">これまで: '+r.tries+' 回／最高 '+r.best+'/'+r.total+'／前回 '+r.last+'/'+r.total+'（'+esc(r.date||'')+'）</p>';
+  $('#unit').innerHTML=h;
+  $('#unit').querySelectorAll('[data-say]').forEach(b=>b.addEventListener('click',()=>say(u.questions[+b.dataset.say].listen)));
+  $('#qform').addEventListener('submit',e=>{e.preventDefault(); grade();});
+  if(window.innerWidth<900) $('#unit').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ---------- 音声（英語） ---------- */
+async function say(text){
+  { const p=playA('|'+text); if(p) return p; }
+  try{ if(!tts&&window.claude&&claude.use) tts=await claude.use('tts'); if(tts){ await tts.speak(text,{language:'en',rate:0.9}); return; } }catch(e){}
+  try{ const m=new SpeechSynthesisUtterance(text); m.lang='en-US'; m.rate=0.9; speechSynthesis.cancel(); speechSynthesis.speak(m);}catch(e){}
+}
+
+/* ---------- 記述の採点（Claude に見てもらう） ---------- */
+async function gradeWrite(q,ans){
+  if(!ans.trim()) return {ok:false,msg:'答えが空です。'};
+  try{
+    if(!sample&&window.claude&&claude.use) sample=await claude.use('sample');
+    if(sample){
+      const prompt='あなたは中学・高校の英語の先生です。次の課題への生徒の答えを採点してください。\n課題: '+q.q+'\n採点の観点: '+(q.rubric||'')+'\n模範解答の例: '+(q.model||'')+'\n生徒の答え: '+ans+'\n\nJSON だけで答えてください: {"pass": true か false, "comment": "日本語で2〜3文。良い点と直す点", "fixed": "直した英文"}';
+      const v=await sample.json(prompt,{modelTier:'quick'});
+      return {ok:!!v.pass,msg:(v.comment||'')+(v.fixed?'\n直した例: '+v.fixed:'')};
+    }
+  }catch(e){}
+  return {ok:null,msg:'自動の採点が使えない画面です。下の模範解答と見比べて、自分で〇か×を決めてください。'};
+}
+
+/* ---------- 採点と学び直し ---------- */
+async function grade(){
+  const u=cur; $('#grade').disabled=true; chosen=[];
+  const res=[];
+  for(let i=0;i<u.questions.length;i++){
+    const q=u.questions[i];
+    if(q.type==='write'){
+      const ans=$('#w'+i).value; $('#r'+i).innerHTML='<div class="res">採点しています…</div>';
+      const g=await gradeWrite(q,ans);
+      const tail='<br><b>模範解答の例</b> '+esc(q.model||'')+'<br><b>解説</b> '+esc(q.explain);
+      if(g.ok===null){
+        res[i]=null;
+        $('#r'+i).innerHTML='<div class="res">'+esc(g.msg)+tail+'<div class="row" style="margin-top:6px"><button class="btn ghost speak" type="button" data-self="'+i+'" data-v="1">合っていた</button><button class="btn ghost speak" type="button" data-self="'+i+'" data-v="0">違っていた</button></div></div>';
+      }else{
+        res[i]=!!g.ok;
+        $('#r'+i).innerHTML='<div class="res '+(g.ok?'ok':'ng')+'"><b>'+(g.ok?'合格':'もう一歩')+'</b><br>'+esc(g.msg).replace(/\n/g,'<br>')+tail+(kit?kit.feedback(q,-1,!!g.ok):'')+'</div>';
+      }
+    }else{
+      const sel=document.querySelector('input[name="a'+i+'"]:checked');
+      const v=sel?+sel.value:-1, ok=v===q.answer; res[i]=ok; chosen[i]=v;
+      $('#r'+i).innerHTML='<div class="res '+(ok?'ok':'ng')+'"><b>'+(ok?'正解':(v<0?'未回答':'不正解'))+'</b>'+(ok?'':'（正解: '+esc(q.choices[q.answer])+'）')+'<br><b>解説</b> '+esc(q.explain)+(q.listen?'<br><b>流れた英語</b> '+esc(q.listen):'')+(kit?kit.feedback(q,v,ok):'')+'</div>';
+    }
+  }
+  if(res.some(x=>x===null)){
+    $('#verdict').innerHTML='<div class="verdict near"><p>書いた問題は、模範解答と見比べて「合っていた／違っていた」を押してください。押すと採点が決まります。</p></div>';
+    $('#unit').querySelectorAll('[data-self]').forEach(b=>b.addEventListener('click',()=>{
+      const i=+b.dataset.self; res[i]=b.dataset.v==='1';
+      b.parentElement.innerHTML='<b>'+(res[i]?'自分で〇':'自分で×')+'</b>';
+      if(!res.some(x=>x===null)) finish(u,res);
+    }));
+    $('#grade').disabled=false; return;
+  }
+  await finish(u,res);
+}
+async function finish(u,res){
+  const _jb=jSnap();
+  const wrong=[]; let correct=0; res.forEach((ok,i)=>{ if(ok) correct++; else wrong.push(i); });
+  const total=u.questions.length, r=S.units[u.id]||{tries:0,best:0};
+  r.tries++; r.last=correct; r.total=total; r.best=Math.max(r.best||0,correct); r.date=new Date().toLocaleDateString('ja-JP'); r.wrong=wrong;
+  S.units[u.id]=r; delete S.skip[u.id];
+  drawGrid(); save(); jCelebrate(_jb);
+  if(kit) kit.record(u,res,chosen);
+  $('#verdict').innerHTML=verdictHTML(u,correct,total,wrong);
+  const cp=$('#copy'); if(cp) cp.addEventListener('click',async()=>{const t=$('#ptext').textContent; try{await navigator.clipboard.writeText(t); cp.textContent='写しました';}catch(e){const rg=document.createRange(); rg.selectNodeContents($('#ptext')); const s=getSelection(); s.removeAllRanges(); s.addRange(rg); cp.textContent='選択しました（コピーしてください）';}});
+  const rt=$('#retry'); if(rt) rt.addEventListener('click',()=>openUnit(u.id));
+  const nx=$('#nextu'); if(nx) nx.addEventListener('click',()=>{const n=nextTodo(); if(n) openUnit(n.id);});
+  const pv=$('#prevu'); if(pv) pv.addEventListener('click',()=>openUnit(pv.dataset.id));
+  $('#grade').disabled=false;
+}
+function verdictHTML(u,c,t,wrong){
+  const st=c===t?'pass':(t-c<=1&&c>0?'near':'fail');
+  let h='<div class="verdict '+st+'"><h3>'+c+' / '+t+' 問 正解 — '+({pass:'合格です',near:'あと一歩です',fail:'もう一度学び直しましょう'})[st]+'</h3>';
+  if(st==='pass'){ h+='<p>このコマは合格です。全問の解説を読んで、言葉で説明できるか確かめてから次へ進んでください。</p><div class="row"><button class="btn" type="button" id="nextu">次にやるコマへ</button></div></div>'; return h; }
+  const pv=prevUnit(u), pvst=pv?status(pv.id):null;
+  h+='<p>間違えた問題: '+wrong.map(i=>'問'+(i+1)).join('、')+'。次の順で学び直してから、もう一度テストを受けてください（選択肢の並びは毎回変わります）。</p><ol>';
+  h+='<li><b>要点を読み直す</b>：上の「要点」と、間違えた問題の解説を声に出して読む。</li>';
+  if(u.ref&&u.ref!=='—') h+='<li><b>'+esc(P.refLabel||'講座で確かめる')+'</b>：'+esc(u.ref)+(P.refHint?'（'+esc(P.refHint)+'）':'')+'</li>';
+  if(u.agent&&u.agent!=='—') h+='<li><b>手を動かす</b>：'+esc(u.agent)+' で「'+esc(u.goal)+'」を実際に 1 回やってみる。</li>';
+  if(u.remedy) h+='<li>'+esc(u.remedy)+'</li>';
+  if(pv&&pvst!=='pass') h+='<li><b>前の段階に戻る</b>：'+esc(pv.id+' '+pv.title)+' がまだ合格していません。先にそちらを。 <button class="btn ghost speak" type="button" id="prevu" data-id="'+pv.id+'">'+esc(pv.id)+' を開く</button></li>';
+  h+='<li><b>'+esc(P.tutorLabel||'家庭教師に頼む')+'</b>：下の文を写して、'+esc(P.tutorWho||'係')+'に貼り付けると、分かるまで説明して練習問題を出します。</li></ol>';
+  const wq=wrong.map(i=>{const q=u.questions[i];
+    return '・'+q.q+(q.listen?'（流れた英語: '+q.listen+'）':'')+(q.choices?'（正解: '+q.choices[q.answer]+'）':'')+(q.model?'（模範解答の例: '+q.model+'）':'');}).join('\n');
+  const prompt=(P.tutorPrompt||'')
+    .replace('{unit}',u.id+'「'+u.title+'」').replace('{goal}',u.goal).replace('{learn}',u.learn).replace('{wrong}',wq);
+  h+='<pre class="prompt" id="ptext">'+esc(prompt)+'</pre><div class="row"><button class="btn ghost" type="button" id="copy">この文を写す</button><button class="btn" type="button" id="retry">もう一度テストを受ける</button></div></div>';
+  return h;
+}
+
+/* ---------- アメリカ横断の旅（USB 版で足す） ---------- */
+const JS=window.__JOURNEYS__||[], IMG=window.__IMG__||{};
+let J=null, jChoosing=false, jPick=null;
+function pickJ(){ if(!S.journey && JS.length && passCount()>0) S.journey=JS[0].id; /* 旅を選ぶ前の版で進めていた人はアメリカ横断の旅のまま */ J=JS.find(x=>x.id===S.journey)||null; return J; }
+function passCount(){return P.units.filter(u=>status(u.id)==='pass').length;}
+const FK=()=>Object.keys(P.fields);
+const ymd=x=>x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');
+function passedAt(f,l){const u=P.units.find(x=>x.field===f&&x.level===l); return !!u&&status(u.id)==='pass';}
+function pieces(l){return FK().map(f=>passedAt(f,l));}
+function stopsDone(){let n=0; for(let l=1;l<=J.stops.length;l++) if(pieces(l).every(Boolean)) n++; return n;}
+function fieldsDone(){return FK().filter(f=>P.units.filter(u=>u.field===f).every(u=>status(u.id)==='pass')).length;}
+function allDone(){return P.units.every(u=>status(u.id)==='pass');}
+function pieceCount(){let n=0; for(let l=1;l<=J.stops.length;l++) n+=pieces(l).filter(Boolean).length; return n;}
+function titleNow(){const n=stopsDone(); let t=J.titles[0]; for(const x of J.titles) if(n>=x[0]) t=x; return t;}
+function streak(){const d=new Set(S.days||[]); const day=new Date(); if(!d.has(ymd(day))) day.setDate(day.getDate()-1); let n=0; while(d.has(ymd(day))){n++; day.setDate(day.getDate()-1);} return n;}
+function jSnap(){pickJ(); S.days=S.days||[]; if(!J) return {p:0,s:0,ds:[],f:0,a:false,t:''}; const t=ymd(new Date()); if(!S.days.includes(t)) S.days.push(t); const ds=[]; for(let l=1;l<=J.stops.length;l++) if(pieces(l).every(Boolean)) ds.push(l-1); return {p:pieceCount(),s:stopsDone(),ds,f:fieldsDone(),a:allDone(),t:titleNow()[1]};}
+function jCelebrate(b){
+  const n=jSnap(); const msg=[]; if(!J){drawJourney(); return;}
+  if(n.p>b.p) msg.push('🧩 旅の絵のかけらを手に入れました（'+n.p+' / 105）');
+  n.ds.filter(i=>!b.ds.includes(i)).forEach(i=>msg.push('🗺 '+J.stops[i].ja+' の絵が完成しました！ 旅の地図から開いてみましょう'));
+  if(n.f>b.f && n.f<=J.unis.length) msg.push('🎓 '+J.unis[n.f-1].ja+' のキャンパスを見学できるようになりました');
+  if(n.a && !b.a) msg.push('🏛 すべて合格！ ハーバード大学の見学です');
+  if(n.t!==b.t) msg.push('🏅 称号が「'+titleNow()[1]+'（'+titleNow()[2]+'）」になりました');
+  drawJourney();
+  if(msg.length) toast(msg.join('<br>'));
+}
+function toast(h){const t=$('#jtoast'); t.innerHTML=h; t.hidden=false; clearTimeout(toast.k); toast.k=setTimeout(()=>{t.hidden=true;},6000);}
+function cover(l){const ps=pieces(l); return '<div class="jcover">'+ps.map(ok=>'<i class="'+(ok?'open':'')+'"></i>').join('')+'</div>';}
+function chooserHTML(){
+  const started=passCount()>0;
+  let h='<h2>'+(started?(JS.length>1?'別の旅で復習する':'もう一度、旅で復習する'):'旅を選んでください')+'</h2>';
+  h+='<p class="sub">'+(started?(JS.length>1?'別の旅を選ぶと、':'旅を選ぶと、')+'全部のコマを最初から解き直す「復習」が始まります。これまでの合格の記録は「これまでの旅」に残ります。':'選んだ旅の絵が、合格するたびに少しずつ開いていきます。1 回目が終わったら、復習のときに別の旅を選べます。')+'</p><div class="jstops">';
+  JS.forEach(x=>{const cur=S.journey===x.id;
+    h+='<button type="button" class="jcard jpick'+(jPick===x.id?' done':'')+'" data-pick="'+x.id+'"'+(cur&&started&&JS.length>1?' disabled':'')+'><span class="jimg"><img alt="" src="'+(IMG[x.stops[0].img]||'')+'"></span><span class="jname">'+esc(x.name)+'</span><span class="jsub">'+esc(x.stops[0].ja)+' → '+esc(x.stops[x.stops.length-1].ja)+' ／ ゴール '+esc(x.goal.ja)+(cur?'（いまの旅）':'')+'</span></button>';});
+  h+='</div>';
+  if(jPick){ const x=JS.find(y=>y.id===jPick);
+    h+='<div class="row" style="margin-top:12px"><button class="btn" type="button" id="jstart">'+(started?'「'+esc(x.name)+'」で復習を始める（今の記録は「これまでの旅」に残します）':'「'+esc(x.name)+'」で始める')+'</button>';
+  } else h+='<div class="row" style="margin-top:12px">';
+  if(J) h+='<button class="btn ghost" type="button" id="jcancel">いまの旅に戻る</button>';
+  return h+'</div>'+pastHTML();
+}
+function pastHTML(){ const p=S.past||[]; if(!p.length) return '';
+  return '<h3 style="margin-top:14px">これまでの旅</h3><div class="row">'+p.map(x=>'<span class="jbadge">'+esc(x.name)+'：'+esc(x.title)+'・合格 '+x.passes+'/105（'+esc(x.end)+'）</span>').join('')+'</div>'; }
+function startJourney(id){
+  const x=JS.find(y=>y.id===id); if(!x) return;
+  if(passCount()>0){ const t=titleNow(); S.past=S.past||[]; S.past.push({id:S.journey, name:J?J.name:'', title:t?t[1]:'', passes:passCount(), end:new Date().toLocaleDateString('ja-JP')}); S.units={}; S.skip={}; }
+  S.journey=id; jChoosing=false; jPick=null; pickJ(); save(); drawGrid();
+  toast('🧳 「'+x.name+'」が始まりました。'+(S.past&&S.past.length?'復習でもう一度、全部のコマに挑戦しましょう。':''));
+}
+function drawJourney(){
+  const box=$('#journey'); if(!box) return; pickJ();
+  if(!J||jChoosing){ box.innerHTML=chooserHTML(); return; }
+  const t=titleNow(), sd=stopsDone(), fd=fieldsDone();
+  let h='<div class="row" style="justify-content:space-between;align-items:center"><h2>'+esc(J.name||'アメリカ横断の旅')+'</h2>'
+   +'<div class="row jstat"><span class="jbadge">称号 <b>'+esc(t[1])+'</b>（'+esc(t[2])+'）</span><span>旅先 <b>'+sd+'</b>/15</span>'+(J.unis.length?'<span>大学見学 <b>'+Math.min(fd,J.unis.length)+'</b>/'+J.unis.length+'</span>':'')+'<span>かけら <b>'+pieceCount()+'</b>/105</span><span>続けて <b>'+streak()+'</b> 日</span><button class="btn ghost speak" type="button" id="jchange">'+(JS.length>1?'別の旅で復習':'もう一度、旅で復習')+'</button></div></div>'
+   +'<p class="sub">'+esc(J.howto||'1 つのコマに合格すると、同じ段階の旅先の絵のかけらが 1 枚開きます。7 つの分野がそろうと絵が完成し、その町の英語の紹介を読めます。1 つの分野の 15 コマすべてに合格するごとに大学を 1 校見学でき、全部合格するとハーバード大学の見学でゴールです。')+'</p>'
+   +'<div class="jstops">';
+  J.stops.forEach((s,i)=>{const l=i+1, done=pieces(l).every(Boolean), n=pieces(l).filter(Boolean).length;
+    h+='<button type="button" class="jcard'+(done?' done':'')+'" data-k="s'+i+'"><span class="jimg"><img alt="" src="'+(IMG[s.img]||'')+'">'+(done?'':cover(l))+'</span><span class="jname">'+l+'. '+esc(s.ja)+'</span><span class="jsub">'+(done?'完成':'かけら '+n+'/7')+'</span></button>';});
+  h+='</div><h3 style="margin-top:14px">'+esc(J.uniTitle===undefined?'大学のキャンパス見学':(J.uniTitle||'旅のゴール'))+'</h3><div class="jstops">';
+  J.unis.forEach((u,i)=>{const ok=fd>i;
+    h+='<button type="button" class="jcard uni'+(ok?' done':' locked')+'" data-k="u'+i+'"><span class="jimg"><img alt="" src="'+(IMG[u.img]||'')+'"></span><span class="jname">'+(ok?esc(u.ja):'？？？')+'</span><span class="jsub">'+(ok?'見学できます':'分野をあと '+(i+1-fd)+' つ完成')+'</span></button>';});
+  const g=J.goal, ga=allDone();
+  h+='<button type="button" class="jcard uni goal'+(ga?' done':' locked')+'" data-k="g"><span class="jimg"><img alt="" src="'+(IMG[g.img]||'')+'"></span><span class="jname">'+(ga?esc(g.ja):'ゴール：？？？')+'</span><span class="jsub">'+(ga?'旅のゴール':esc(J.goalLock||'105 コマすべて合格で見学'))+'</span></button></div>'
+   +pastHTML()+'<div class="row" style="margin-top:12px"><label class="sub" for="sname">名前</label><input id="sname" class="jname-in" value="'+esc(S.name||'')+'" placeholder="例：2年1組 山田"><button class="btn ghost" type="button" id="export">結果を書き出す（Excel で開けます）</button></div>';
+  box.innerHTML=h;
+}
+function openPlace(k){
+  let it, img, done, extra='';
+  if(k[0]==='s'){const i=+k.slice(1); it=J.stops[i]; done=pieces(i+1).every(Boolean);
+    if(!done){const miss=FK().filter((f,j)=>!pieces(i+1)[j]).map(f=>P.units.find(x=>x.field===f&&x.level===i+1).id); extra='<p>あと '+miss.length+' 枚で完成します。合格するコマ：'+miss.map(esc).join('・')+'</p>';}
+    img='<span class="jimg big"><img alt="" src="'+(IMG[it.img]||'')+'">'+(done?'':cover(i+1))+'</span>';}
+  else if(k[0]==='u'){const i=+k.slice(1); it=J.unis[i]; done=fieldsDone()>i; if(!done) extra='<p>1 つの分野の 15 コマすべてに合格すると見学できます（あと '+(i+1-fieldsDone())+' 分野）。</p>'; img='<span class="jimg big'+(done?'':' lockimg')+'"><img alt="" src="'+(IMG[it.img]||'')+'"></span>';}
+  else {it=J.goal; done=allDone(); if(!done) extra='<p>105 コマすべてに合格すると、旅のゴールの大学を見学できます。</p>'; img='<span class="jimg big'+(done?'':' lockimg')+'"><img alt="" src="'+(IMG[it.img]||'')+'"></span>';}
+  const d=$('#jdlg');
+  d.innerHTML='<h2>'+(done||k[0]==='s'?esc(it.ja):'？？？')+'</h2>'+img+(done?'<p class="jen">'+esc(it.en)+'</p><p class="jsay" lang="en">'+esc(it.say)+'</p><p>'+esc(it.jp)+'</p><div class="row"><button class="btn" type="button" id="jread">英語で読み上げる</button>'+(lines(it.say).length>1?'<button class="btn" type="button" id="jrole">ロールプレイ（相手が先に話す）</button>':''):extra+'<div class="row">')+'<button class="btn ghost" type="button" id="jclose">閉じる</button></div>';
+  d.showModal();
+  const r=$('#jread'); if(r) r.addEventListener('click',()=>readAll(it.say));
+  $('#jclose').addEventListener('click',()=>{stopA(); d.close();});
+  const rp=$('#jrole'); if(rp) rp.addEventListener('click',()=>rolePlay(it));
+}
+function lines(t){ const re=/([A-Z][A-Za-z ]{1,24}):\s/g; const out=[]; let m, last=null;
+  while((m=re.exec(t))){ if(last!==null) out[out.length-1].text=t.slice(last,m.index).trim(); out.push({who:m[1],text:''}); last=re.lastIndex; }
+  if(last!==null) out[out.length-1].text=t.slice(last).trim(); return out; }
+/* 音声ファイル（window.__AUDIO__「話し手|文」）があればそれを流し、無ければブラウザの読み上げ */
+let __aCur=null, __aGen=0;
+function stopA(){ __aGen++; try{ if(__aCur){ __aCur.pause(); __aCur=null; } }catch(e){} try{ speechSynthesis.cancel(); }catch(e){} }
+function playA(k){ const src=(window.__AUDIO__||{})[k]; if(!src) return null;
+  return new Promise(res=>{ try{ if(__aCur) __aCur.pause(); speechSynthesis.cancel(); }catch(e){}
+    const a=new Audio(src); __aCur=a; a.onended=res; a.onerror=res; a.onpause=res; a.play().catch(res); }); }
+async function readAll(t){ stopA(); const g=__aGen, L=lines(t);
+  if(!L.length){ await speakP(t,''); return; }
+  for(const ln of L){ if(g!==__aGen) return; await speakP(ln.text, ln.who); } }
+function speakP(text, who){ const p=playA((who||'')+'|'+text); if(p) return p; return new Promise(res=>{ let done=false; const fin=()=>{ if(!done){done=true; res();} }; try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=.9; u.onend=fin; u.onerror=fin; speechSynthesis.speak(u); }catch(e){} setTimeout(fin, 1500+text.length*90); }); }
+async function rolePlay(it){
+  const L=lines(it.say), d=$('#jdlg'); let i=0;
+  let box=d.querySelector('#jrp'); if(!box){ box=document.createElement('div'); box.id='jrp'; box.className='learn'; d.insertBefore(box, d.querySelector('.row')); }
+  const step=async()=>{
+    if(i>=L.length){ box.innerHTML='<p><b>よくできました！</b> もう一度やると、もっとすらすら言えます。</p>'; return; }
+    const ln=L[i], me=/^You$/i.test(ln.who);
+    let h='<p class="sub">'+(i+1)+' / '+L.length+'</p>';
+    if(me) h+='<p><b>あなたの番です。</b>声に出して言ってみましょう。</p><p class="jsay" lang="en">'+esc(ln.text)+'</p><div class="row"><button class="btn" type="button" id="jok">言えた（次へ）</button><button class="btn ghost" type="button" id="jhint">お手本を聞く</button></div>';
+    else h+='<p><b>'+esc(ln.who)+'</b>（相手）が話しています…</p><p class="jsay" lang="en">'+esc(ln.text)+'</p>';
+    box.innerHTML=h;
+    if(me){ box.querySelector('#jok').onclick=()=>{i++; step();}; box.querySelector('#jhint').onclick=()=>speakP(ln.text, ln.who); }
+    else { await speakP(ln.text, ln.who); i++; step(); }
+  };
+  step();
+}
+function exportCsv(){
+  const fn=Object.fromEntries(Object.entries(P.fields));
+  const lab={pass:'合格',near:'あと一歩',fail:'学び直し',skip:'飛ばしてよい',todo:'まだ'};
+  const rows=[['名前','コマ','分野','段階','題','状態','最高点','満点','受けた回数','最後に受けた日']];
+  for(const u of P.units){const r=S.units[u.id]||{}; rows.push([S.name||'',u.id,fn[u.field]||u.field,u.level,u.title,lab[status(u.id)],r.best??'',r.total??u.questions.length,r.tries||0,r.date||'']);}
+  rows.push([]); rows.push(['いまの旅',J?J.name:'']); (S.past||[]).forEach(x=>rows.push(['これまでの旅',x.name,x.title,'合格',x.passes,x.end])); rows.push(['称号',titleNow()[1]+'（'+titleNow()[2]+'）','完成した旅先',stopsDone(),'見学した大学',Math.min(fieldsDone(),7),'続けた日数',streak()]);
+  const csv='﻿'+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='英語学習の記録_'+(S.name||'名前なし').replace(/[\\/:*?"<>|\s]+/g,'_')+'_'+ymd(new Date())+'.csv';
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},1000);
+}
+document.addEventListener('click',e=>{
+  const pk=e.target.closest('#journey [data-pick]'); if(pk){ jPick=pk.dataset.pick; drawJourney(); return; }
+  const c=e.target.closest('#journey .jcard[data-k]'); if(c) openPlace(c.dataset.k);
+  if(e.target.closest('#export')) exportCsv();
+  if(e.target.closest('#jchange')){ jChoosing=true; jPick=null; drawJourney(); }
+  if(e.target.closest('#jcancel')){ jChoosing=false; jPick=null; drawJourney(); }
+  if(e.target.closest('#jstart')) startJourney(jPick);
+});
+document.addEventListener('change',e=>{if(e.target.id==='sname'){S.name=e.target.value.trim(); save();}});
+
+window.__REDRAW__=()=>{try{drawJourney()}catch(e){}};
+/* ---------- 起動 ---------- */
+Promise.resolve(window.__PROGRAM__).then(async data=>{
+  P=data; document.title=P.name; $('#pname').textContent=P.name; $('#pdesc').textContent=P.desc||'';
+  drawGrid(); drawPlace();
+  await load(); drawGrid(); drawPlace();
+  kit=LearnKit.create({program:P,status,open:openUnit,mount:$('#lk-dash'),say}); kit.draw();
+}).catch(()=>{ $('#pname').textContent='教材を読み込めませんでした'; $('#pdesc').textContent='ページを開き直してください。'; });
+})();
+</script>
+
+<script>
+(async()=>{
+const APP="hotel", KEYID="a0e4bcc77129b86d", STORE='mkey:'+APP;
+const $=s=>document.querySelector(s), b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const te=new TextEncoder(), td=new TextDecoder();
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+async function open(key,buf){ const u=new Uint8Array(buf); return crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(0,12)},key,u.slice(12)); }
+async function get(path){ const r=await fetch(path); if(!r.ok) throw new Error(path+' '+r.status); return r.arrayBuffer(); }
+async function unwrap(pass){
+  const kj=JSON.parse(td.decode(await get('key.json'))), base=await crypto.subtle.importKey('raw',te.encode(pass),'PBKDF2',false,['deriveKey']);
+  for(const s of kj.slots){
+    const kek=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(s.salt),iterations:kj.iter,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+    try{ return new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(s.iv)},kek,b64(s.wrapped))); }catch(e){}
+  }
+  return null;
+}
+async function boot(raw){
+  const key=await crypto.subtle.importKey('raw',raw,'AES-GCM',false,['decrypt']);
+  const d=JSON.parse(td.decode(await open(key,await get('data.bin'))));
+  window.__PROGRAM__=d.program; window.__JOURNEYS__=d.journeys||[]; window.__IMG__={}; window.__AUDIO__={};
+  $('#lock').remove(); document.body.classList.remove('locked');
+  for(const old of document.querySelectorAll('script.app-js')){ const s=document.createElement('script'); s.textContent=old.textContent; document.body.appendChild(s); }
+  const fill=async(map,dst,mime)=>{ for(const [k,f] of Object.entries(map||{})){ try{ dst[k]=URL.createObjectURL(new Blob([await open(key,await get(f))],{type:mime})); }catch(e){} } };
+  await fill(d.img,window.__IMG__,'image/jpeg'); if(window.__REDRAW__) window.__REDRAW__();
+  await fill(d.audio,window.__AUDIO__,'audio/mpeg');
+}
+let saved=null; try{ const v=JSON.parse(localStorage.getItem(STORE)||'null'); if(v&&v.id===KEYID) saved=b64(v.k); }catch(e){}
+if(saved){ try{ await boot(saved); return; }catch(e){} }
+$('#lock').hidden=false;
+$('#lockf').addEventListener('submit',async e=>{
+  e.preventDefault(); const m=$('#lock .msg'); m.textContent='確かめています…';
+  try{
+    const raw=await unwrap($('#pass').value);
+    if(!raw){ m.textContent='合言葉が違います。'; return; }
+    if($('#remember').checked){ try{ localStorage.setItem(STORE,JSON.stringify({id:KEYID,k:btoa(String.fromCharCode(...raw))})); }catch(e){} }
+    await boot(raw);
+  }catch(err){ m.textContent='開けませんでした。電波のある所で開き直してください。'; }
+});
+})();
+</script>
+
+</body></html>

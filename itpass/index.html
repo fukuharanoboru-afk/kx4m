@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>ITパスポート合格講座（過去問なし版）</title><meta name="theme-color" content="#1f6f5c"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ITパス"><style>
+#lock{max-width:420px;margin:12vh auto 0;padding:24px 16px;font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;color:#1d2330}
+#lock h1{font-size:1.25rem;margin:0 0 8px}
+#lock p{margin:0 0 16px;color:#4a5263;line-height:1.6}
+#lock input{width:100%;box-sizing:border-box;font-size:1.1rem;padding:12px;border:1px solid #c5cbd6;border-radius:8px}
+#lock button{width:100%;margin-top:12px;font-size:1.05rem;padding:12px;border:0;border-radius:8px;background:#1f6f5c;color:#fff}
+#lock label{display:flex;gap:8px;align-items:center;margin-top:12px;color:#4a5263}
+body.locked>:not(#lock){display:none!important}
+#lock .msg{min-height:1.6em;margin-top:12px;color:#a33}
+@media (prefers-color-scheme:dark){#lock{color:#e8ebf1}#lock p,#lock label{color:#b8bfcc}#lock input{background:#1d2330;color:#e8ebf1;border-color:#4a5263}}
+</style></head><body class="locked">
+<div id="lock" hidden><h1>ITパスポート合格講座（過去問なし版）</h1><p>合言葉を入れてください。一度開けば、この携帯では電波が無くても使えます。</p><form id="lockf"><input id="pass" type="password" autocomplete="current-password" aria-label="合言葉" required><label><input type="checkbox" id="remember" checked style="width:auto">この携帯に覚えさせる</label><button type="submit">開く</button><div class="msg" role="status"></div></form></div>
+<style>
+/* 学びの部品（learn_kit.js）の見た目。色は講座の画面の --accent・--pass・--fail・--line・--muted・--ink・--panel・--bg を使う */
+.lk-panel{margin-bottom:20px}
+.lk-head{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;justify-content:space-between}
+.lk-sub{color:var(--muted);font-size:.8rem}
+.lk-dash{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:8px}
+@media (max-width:760px){.lk-dash{grid-template-columns:minmax(0,1fr)}}
+.lk-radar{width:100%;max-width:400px;height:auto;display:block;margin:0 auto;overflow:visible}
+.lk-ring{fill:none;stroke:var(--line);stroke-width:1}
+.lk-axis{stroke:var(--line);stroke-width:1}
+.lk-rate{fill:var(--accent);fill-opacity:.22;stroke:var(--accent);stroke-width:2}
+.lk-reach{fill:none;stroke:var(--pass);stroke-width:2;stroke-dasharray:5 4}
+.lk-lab{fill:var(--ink);font-size:11px;font-family:var(--body)}
+.lk-legend{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:.78rem;color:var(--muted)}
+.lk-legend i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:4px}
+.lk-k-rate{background:var(--accent)}
+.lk-k-reach{background:repeating-linear-gradient(90deg,var(--pass) 0 5px,transparent 5px 9px)}
+.lk-table{width:100%;border-collapse:collapse;font-size:.85rem;font-variant-numeric:tabular-nums}
+.lk-table th,.lk-table td{padding:3px 6px;border-bottom:1px solid var(--line);text-align:left}
+.lk-table td+td,.lk-table th+th{text-align:right;white-space:nowrap}
+.lk-next,.lk-boxline{margin-top:12px;font-size:.9rem;line-height:1.7}
+.lk-boxline{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.lk-btn{font-family:var(--body);font-size:.85rem;border-radius:7px;border:1px solid var(--accent);background:transparent;color:var(--accent);padding:5px 12px;cursor:pointer;margin-top:4px}
+.lk-btn.lk-strong{background:var(--accent);color:var(--panel)}
+.lk-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.lk-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.lk-detail{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:.9rem}
+.lk-detail p{margin:0 0 6px}
+.lk-detail ul{margin:4px 0 6px;padding-left:1.2em}
+.lk-others summary{cursor:pointer;color:var(--accent);font-size:.88rem}
+.lk-mine{background:var(--fail-soft);border-radius:6px;padding:6px 8px}
+.lk-fix{background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--near);border-radius:6px;padding:8px 10px;margin-top:6px}
+.lk-note{color:var(--muted);font-size:.8rem}
+.lk-card{border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:14px;background:var(--bg)}
+.lk-card p{margin:6px 0}
+.lk-ch{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border-radius:6px;cursor:pointer}
+.lk-ch input{margin-top:5px}
+.lk-res{border-radius:6px;padding:8px 10px;margin-top:8px;font-size:.9rem}
+.lk-ok{background:var(--pass-soft)}
+.lk-ng{background:var(--fail-soft)}
+.lk-done{margin-top:12px;font-weight:700}
+@keyframes lk-flash{0%{box-shadow:0 0 0 4px var(--near)}100%{box-shadow:0 0 0 0 transparent}}
+.lk-flash{animation:lk-flash 1.8s ease-out}
+@media (prefers-reduced-motion: reduce){.lk-flash{animation:none;outline:3px solid var(--near)}}
+</style><style>
+:root{
+  --bg:#f5f6f2; --panel:#fff; --ink:#1d2622; --muted:#5d6a63; --line:#d9dfd9;
+  --accent:#1f6f5c; --accent-soft:#dcefe8; --ok:#2f7d4f; --ok-soft:#dcf1e2; --ng:#b23b3b; --ng-soft:#f7e0e0;
+  --warn:#9a6a12; --warn-soft:#f8ecd2; --stamp:#c0392b;
+  --S:#2a6fb0; --M:#a35a12; --T:#6b4fb3;
+  --head:"Zen Kaku Gothic New","Noto Sans JP",system-ui,sans-serif; --body:"Noto Sans JP",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141a17; --panel:#1c2420; --ink:#e7ece9; --muted:#9db0a6; --line:#2f3a35;
+  --accent:#6cc3a8; --accent-soft:#1f3b33; --ok:#74c995; --ok-soft:#1f3a2a; --ng:#ef8a8a; --ng-soft:#432526;
+  --warn:#e0b25c; --warn-soft:#3d321b; --stamp:#ff7b6b; --S:#7db3e8; --M:#e3a464; --T:#b29cf0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a17; --panel:#1c2420; --ink:#e7ece9; --muted:#9db0a6; --line:#2f3a35;
+  --accent:#6cc3a8; --accent-soft:#1f3b33; --ok:#74c995; --ok-soft:#1f3a2a; --ng:#ef8a8a; --ng-soft:#432526;
+  --warn:#e0b25c; --warn-soft:#3d321b; --stamp:#ff7b6b; --S:#7db3e8; --M:#e3a464; --T:#b29cf0; color-scheme:dark}
+/* 学びの部品（common/learn_kit）が使う色の名前を、この画面の色に結ぶ */
+:root{--pass:var(--ok);--pass-soft:var(--ok-soft);--fail:var(--ng);--fail-soft:var(--ng-soft);--near:var(--warn);--near-soft:var(--warn-soft)}
+#lk-review .lk-card p{white-space:pre-wrap}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:104px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.75}
+.wrap{max-width:1040px;margin:0 auto;padding-block:16px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--head);margin:0;text-wrap:balance}
+h1{font-size:1.5rem} h2{font-size:1.2rem} h3{font-size:1.02rem}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+.sub{color:var(--muted);font-size:.88rem}
+header.top{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:end;justify-content:space-between;margin-bottom:12px}
+.meter{display:flex;gap:8px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.meter div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 12px;min-width:76px}
+@media (max-width:520px){.meter{width:100%;gap:6px}.meter div{flex:1;min-width:0;padding:4px 6px}.meter b{font-size:1.05rem}.meter span{font-size:.66rem}}
+.meter b{display:block;font-size:1.2rem;font-family:var(--head)}
+.meter span{font-size:.72rem;color:var(--muted)}
+nav.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 16px;position:sticky;top:0;z-index:5;background:var(--bg);padding:6px 0}
+nav.tabs a{text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 14px;font-size:.9rem;white-space:nowrap}
+nav.tabs a.on{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+nav.tabs .cnt{display:inline-block;min-width:1.4em;margin-left:4px;padding:0 5px;border-radius:999px;background:var(--ng);color:var(--panel);font-size:.75rem;text-align:center}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px;min-width:0}
+.btn{border:1px solid var(--accent);background:var(--accent);color:var(--panel);border-radius:8px;padding:7px 16px;font-weight:700}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.part-h{display:flex;align-items:center;gap:8px;margin:18px 0 6px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;flex:1;min-width:60px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.mid{margin:10px 0 4px;font-size:.86rem;color:var(--muted);font-weight:700}
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px}
+.ucard{display:flex;gap:8px;align-items:center;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
+.ucard .uid{font-family:var(--head);font-size:.8rem;color:var(--muted);flex:none;width:2.7em}
+.ucard .ut{flex:1;min-width:0;font-size:.9rem;line-height:1.4}
+.ucard .mk{flex:none;font-size:.78rem}
+.ucard.pass{border-color:var(--ok);background:var(--ok-soft)}
+.seal{display:inline-grid;place-items:center;width:2.2em;height:2.2em;border:2px solid var(--stamp);color:var(--stamp);border-radius:50%;font-family:var(--head);font-size:.7rem;font-weight:700;transform:rotate(-12deg);line-height:1}
+.seal.big{width:4.2em;height:4.2em;font-size:1rem;border-width:3px}
+.tag.past{border-color:var(--stamp);color:var(--stamp)}
+.tag{display:inline-block;font-size:.75rem;border:1px solid var(--line);border-radius:4px;padding:0 6px;color:var(--muted);margin-right:4px}
+section.sec{border-left:3px solid var(--accent-soft);padding:2px 0 2px 12px;margin:14px 0;scroll-margin-top:64px}
+section.sec.flash{animation:flash 2.2s}
+@keyframes flash{0%,40%{background:var(--warn-soft)}100%{background:transparent}}
+section.sec p{margin:.4em 0}
+section.sec pre{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-x:auto;font-size:.85rem;line-height:1.5}
+section.sec table.qt{border-collapse:collapse;font-size:.86rem;display:block;overflow-x:auto;max-width:100%}
+section.sec table.qt td{border:1px solid var(--line);padding:2px 8px;white-space:nowrap}
+.memo{background:var(--accent-soft);border-radius:8px;padding:10px 12px;margin:12px 0}
+.q{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0;scroll-margin-top:64px}
+.q .qh{font-weight:700;font-family:var(--head);margin-bottom:6px}
+.q pre{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-x:auto;font-size:.85rem;line-height:1.5;margin:6px 0}
+.q table.qt{border-collapse:collapse;margin:6px 0;font-size:.86rem;display:block;overflow-x:auto;max-width:100%}
+.q table.qt td{border:1px solid var(--line);padding:2px 8px;white-space:nowrap}
+.choices{display:grid;gap:6px;margin-top:8px}
+.choice{display:flex;gap:10px;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:8px 10px;align-items:flex-start;width:100%}
+.choice .k{font-family:var(--head);font-weight:700;flex:none;width:1.4em}
+.choice:hover:not(:disabled){border-color:var(--accent)}
+.choice.ok{border-color:var(--ok);background:var(--ok-soft)}
+.choice.ng{border-color:var(--ng);background:var(--ng-soft)}
+.choice.sel{border-color:var(--accent);background:var(--accent-soft)}
+.choice:disabled{cursor:default}
+.fb{margin-top:10px;border-radius:8px;padding:10px 12px}
+.fb.ok{background:var(--ok-soft)} .fb.ng{background:var(--ng-soft)}
+.fb h4{margin:0 0 4px;font-family:var(--head)}
+.fb ul{margin:4px 0;padding-left:1.2em}
+.fb li{margin:2px 0}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 18px;border-radius:999px;font-size:.92rem;z-index:20;opacity:0;transition:opacity .3s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1}
+svg.radar{width:100%;height:auto;display:block}
+svg.radar text{fill:var(--muted);font-size:11px;font-family:var(--body)}
+svg.radar .grid{fill:none;stroke:var(--line)}
+svg.radar .pass{fill:none;stroke:var(--warn);stroke-dasharray:4 4;stroke-width:1.5}
+svg.radar .area{fill:var(--accent);fill-opacity:.18;stroke:var(--accent);stroke-width:2;stroke-linejoin:round}
+svg.radar circle.pt{fill:var(--accent);stroke:var(--panel);stroke-width:2}
+svg.radar circle.hit{fill:transparent}
+table.stat{border-collapse:collapse;width:100%;font-size:.86rem;font-variant-numeric:tabular-nums}
+table.stat td,table.stat th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+table.stat td.n{text-align:right;white-space:nowrap}
+.rec{display:grid;gap:8px}
+.rec a{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;background:var(--accent-soft)}
+.exam-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;position:sticky;top:44px;background:var(--bg);padding:6px 0;z-index:4}
+.timer{font-family:var(--head);font-size:1.2rem;font-variant-numeric:tabular-nums}
+.qnav{display:grid;grid-template-columns:repeat(auto-fill,minmax(34px,1fr));gap:4px;margin:8px 0}
+.qnav button{border:1px solid var(--line);background:var(--panel);border-radius:4px;font-size:.75rem;padding:3px 0}
+.qnav button.done{background:var(--accent-soft);border-color:var(--accent)}
+.qnav button.cur{outline:2px solid var(--accent)}
+.qnav button.flag{border-color:var(--warn);border-width:2px}
+.res-big{font-family:var(--head);font-size:2rem}
+.pf{font-weight:700} .pf.y{color:var(--ok)} .pf.n{color:var(--ng)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:4px}
+.legend i{display:inline-block;width:18px;height:0;border-top:2px solid var(--accent);vertical-align:middle;margin-right:4px}
+.legend i.p{border-top:2px dashed var(--warn)}
+details summary{cursor:pointer;color:var(--accent)}
+</style>
+<div class="wrap">
+  <header class="top">
+    <div><h1>ITパスポート合格講座</h1><div class="sub" id="syl"></div></div>
+    <div class="meter" id="meter"></div>
+  </header>
+  <nav class="tabs" id="tabs"></nav>
+  <section class="panel lk-panel" id="lk-dash"></section>
+  <main id="main"><p class="sub">読み込み中…</p></main>
+</div>
+<div class="toast" id="toast"></div>
+<script type="text/plain" class="app-js">
+/* 学びの部品（どの講座でも共通）: 詳しい解説・間違えたときの対策・復習の箱・分野ごとのレーダーチャート・次にやる段
+ *
+ * 使い方（講座の画面の側）:
+ *   const kit = LearnKit.create({ program, status, open, mount, focus, say });
+ *     program: { programId, fields: {A:'分野名',...}, units: [{ id, field, level, title, learn, questions: [...] }] }
+ *              選ぶ問 { q, choices, answer, explain, listen?, detail? } ／書く問 { type:'write', ... }
+ *              detail = { why, wrong: {まちがいの選択肢の文: 違う理由}, tip, action, review: { unit, where } }
+ *     status(id) → 'pass' | 'near' | 'fail' | 'skip' | 'todo'（その講座の合格の決め方）
+ *     open(id)   → その段を開く（「読み直す所」のボタンで使う）
+ *     mount      → 成績の板（レーダーチャート・次にやる段・復習の箱）を描く要素
+ *     focus      → 段を開いた後に光らせて見せる所（既定 '.learn'＝要点）
+ *     say(text)  → 英文を流す（無ければ聞くボタンを出さない）
+ *   採点のとき: html += kit.feedback(q, 選んだ番号, 正解か)   採点が終わったら: kit.record(unit, [正解か...], [選んだ番号...])
+ * 成績と復習の箱はこの端末のブラウザ（localStorage 'learn-kit-<programId>'）に残す。
+ */
+(function () {
+  'use strict';
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const shuffle = n => { const a = [...Array(n).keys()]; for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  function create(opt) {
+    const P = opt.program, focus = opt.focus || '.learn', KEY = 'learn-kit-' + (P.programId || P.name || 'x');
+    const units = {}; P.units.forEach(u => { units[u.id] = u; });
+    let st = { last: {}, box: {} };
+    try { const v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v) st = Object.assign(st, v); } catch (e) {}
+    const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+    const qOf = k => { const [id, i] = k.split('#'); const u = units[id]; return u && u.questions[+i] ? { u, i: +i, q: u.questions[+i] } : null; };
+
+    /* ---------- 詳しい解説と対策 ---------- */
+    function feedback(q, chosen, ok) {
+      const d = q.detail; if (!d) return '';
+      let h = '<div class="lk-detail">';
+      if (d.why) h += '<p><b>' + (q.type === 'write' ? '書き方の考え方' : '正解の理由') + '<\/b> ' + esc(d.why) + '<\/p>';
+      const w = d.wrong || {}, mine = q.choices && chosen >= 0 && chosen !== q.answer ? q.choices[chosen] : null;
+      if (mine && w[mine]) h += '<p class="lk-mine"><b>選んだ「' + esc(mine) + '」が違う理由<\/b> ' + esc(w[mine]) + '<\/p>';
+      const others = Object.entries(w).filter(([c]) => c !== mine);
+      if (others.length) h += '<details class="lk-others"><summary>' + (mine ? 'ほかの' : '') + 'まちがいの選択肢が違う理由<\/summary><ul>'
+        + others.map(([c, t]) => '<li><b>' + esc(c) + '<\/b>：' + esc(t) + '<\/li>').join('') + '<\/ul><\/details>';
+      if (d.tip) h += '<p><b>覚え方<\/b> ' + esc(d.tip) + '<\/p>';
+      if (!ok) {
+        const r = d.review || {}, ru = units[r.unit];
+        h += '<div class="lk-fix"><p><b>対策<\/b> ' + esc(d.action || '') + '<\/p>';
+        if (ru) h += '<p><b>読み直す所<\/b> ' + esc(ru.id + '「' + ru.title + '」') + (r.where ? ' の ' + esc(r.where) : '')
+          + ' <button class="lk-btn" type="button" data-lk-go="' + esc(ru.id) + '">' + esc(ru.id) + ' を開いて読む<\/button><\/p>';
+        if (q.choices) h += '<p class="lk-note">この問いは復習の箱に入りました。正解するまで出し直します。<\/p>';
+        h += '<\/div>';
+      }
+      return h + '<\/div>';
+    }
+    function go(id) {
+      opt.open(id);
+      setTimeout(() => {
+        const el = document.querySelector(focus); if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.remove('lk-flash'); void el.offsetWidth; el.classList.add('lk-flash');
+      }, 60);
+    }
+    document.addEventListener('click', e => { const b = e.target.closest('[data-lk-go]'); if (b) { e.preventDefault(); go(b.dataset.lkGo); } });
+
+    /* ---------- 記録（1 問ごとの最後の結果と復習の箱） ---------- */
+    function mark(k, ok) {
+      st.last[k] = ok ? 1 : 0;
+      if (ok) delete st.box[k]; else st.box[k] = { miss: ((st.box[k] || {}).miss || 0) + 1, at: Date.now() };
+    }
+    function record(u, res, chosen) {
+      u.questions.forEach((q, i) => { if (q.choices && res[i] !== null && res[i] !== undefined) mark(u.id + '#' + i, !!res[i]); else if (res[i] !== null && res[i] !== undefined) st.last[u.id + '#' + i] = res[i] ? 1 : 0; });
+      save(); draw();
+    }
+
+    /* ---------- 分野ごとの成績 ---------- */
+    function stats() {
+      return Object.entries(P.fields).map(([f, name]) => {
+        const us = P.units.filter(u => u.field === f);
+        let n = 0, c = 0; us.forEach(u => u.questions.forEach((q, i) => { const v = st.last[u.id + '#' + i]; if (v !== undefined) { n++; c += v; } }));
+        const passed = us.filter(u => opt.status(u.id) === 'pass').length;
+        return { f, name, rate: n ? c / n : 0, answered: n, reach: us.length ? passed / us.length : 0, passed, total: us.length };
+      });
+    }
+    function nextUnit(S) {
+      const tried = S.filter(s => s.answered), pool = (tried.length ? tried : S).slice().sort((a, b) => (a.rate + a.reach) - (b.rate + b.reach));
+      for (const s of pool) {
+        const u = P.units.filter(x => x.field === s.f).sort((a, b) => a.level - b.level).find(x => opt.status(x.id) !== 'pass' && opt.status(x.id) !== 'skip');
+        if (u) return { u, s };
+      }
+      return null;
+    }
+    function radar(S) {
+      const n = S.length, R = 92, cx = 160, cy = 130, pt = (i, v) => { const a = -Math.PI / 2 + 2 * Math.PI * i / n; return [cx + R * v * Math.cos(a), cy + R * v * Math.sin(a)]; };
+      const poly = vals => vals.map((v, i) => pt(i, Math.max(v, 0.02)).map(x => x.toFixed(1)).join(',')).join(' ');
+      let g = '';
+      [0.25, 0.5, 0.75, 1].forEach(r => { g += '<polygon class="lk-ring" points="' + poly(S.map(() => r)) + '"/>'; });
+      S.forEach((s, i) => { const [x, y] = pt(i, 1); g += '<line class="lk-axis" x1="' + cx + '" y1="' + cy + '" x2="' + x.toFixed(1) + '" y2="' + y.toFixed(1) + '"/>'; });
+      g += '<polygon class="lk-reach" points="' + poly(S.map(s => s.reach)) + '"/>';
+      g += '<polygon class="lk-rate" points="' + poly(S.map(s => s.rate)) + '"/>';
+      S.forEach((s, i) => {
+        const [x, y] = pt(i, 1.22), anchor = Math.abs(x - cx) < 8 ? 'middle' : (x > cx ? 'start' : 'end');
+        g += '<text class="lk-lab" x="' + x.toFixed(1) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="' + anchor + '">' + esc(s.f) + ' ' + (s.answered ? Math.round(s.rate * 100) + '%' : '—') + '<\/text>';
+      });
+      return '<svg class="lk-radar" viewBox="0 0 320 262" role="img" aria-label="分野ごとの正解率と到達度">' + g + '<\/svg>';
+    }
+
+    /* ---------- 成績の板 ---------- */
+    let reviewing = false;
+    function draw() {
+      if (!opt.mount || reviewing) return;
+      const S = stats(), nx = nextUnit(S), boxN = Object.keys(st.box).filter(qOf).length;
+      let h = '<div class="lk-head"><h2>分野ごとの到達度<\/h2><span class="lk-sub">この端末に残しています<\/span><\/div><div class="lk-dash"><div>' + radar(S)
+        + '<div class="lk-legend"><span><i class="lk-k-rate"><\/i>正解率（最後に解いた結果）<\/span><span><i class="lk-k-reach"><\/i>到達度（合格した段の割合）<\/span><\/div><\/div><div class="lk-side">';
+      h += '<table class="lk-table"><thead><tr><th>分野<\/th><th>正解率<\/th><th>合格<\/th><\/tr><\/thead><tbody>'
+        + S.map(s => '<tr><td>' + esc(s.f + ' ' + s.name) + '<\/td><td>' + (s.answered ? Math.round(s.rate * 100) + '%' : '—') + '<\/td><td>' + s.passed + '/' + s.total + '<\/td><\/tr>').join('') + '<\/tbody><\/table>';
+      if (nx) h += '<div class="lk-next"><b>次にやる段<\/b> ' + esc(nx.u.id + '「' + nx.u.title + '」') + '<br><span class="lk-sub">' + (nx.s.answered ? 'いちばん伸びしろのある分野「' + esc(nx.s.name) + '」から' : 'まだ始めていない分野から') + '<\/span><br><button class="lk-btn" type="button" data-lk-open="' + esc(nx.u.id) + '">' + esc(nx.u.id) + ' を開く<\/button><\/div>';
+      h += '<div class="lk-boxline"><b>復習の箱<\/b> ' + boxN + ' 問' + (boxN ? '<button class="lk-btn lk-strong" type="button" data-lk-review>復習する<\/button>' : '<span class="lk-sub">（間違えた問いがここにたまります）<\/span>') + '<\/div><\/div><\/div><div id="lk-review"><\/div>';
+      opt.mount.innerHTML = h;
+      const o = opt.mount.querySelector('[data-lk-open]'); if (o) o.addEventListener('click', () => opt.open(o.dataset.lkOpen));
+      const r = opt.mount.querySelector('[data-lk-review]'); if (r) r.addEventListener('click', review);
+    }
+
+    /* ---------- 復習の箱（正解するまで出し直す） ---------- */
+    function review() {
+      reviewing = true;
+      const keys = Object.keys(st.box).filter(qOf).sort((a, b) => st.box[b].miss - st.box[a].miss || st.box[a].at - st.box[b].at);
+      const area = opt.mount.querySelector('#lk-review');
+      let idx = 0;
+      const show = () => {
+        if (idx >= keys.length) { reviewing = false; draw(); const left = Object.keys(st.box).filter(qOf).length; const a = opt.mount.querySelector('#lk-review'); if (a) a.innerHTML = '<p class="lk-done">' + (left ? 'ひと回りしました。まだ ' + left + ' 問が箱に残っています。もう一度「復習する」で出し直します。' : '箱は空になりました。よくがんばりました！') + '<\/p>'; return; }
+        const { u, i, q } = qOf(keys[idx]), ord = shuffle(q.choices.length);
+        area.innerHTML = '<div class="lk-card"><div class="lk-sub">復習 ' + (idx + 1) + ' / ' + keys.length + '　' + esc(u.id + '「' + u.title + '」') + '<\/div><p><b>' + esc(q.q) + '<\/b><\/p>'
+          + (q.listen && opt.say ? '<button class="lk-btn" type="button" data-lk-say>英語を聞く<\/button>' : '')
+          + '<form data-lk-form>' + ord.map(k => '<label class="lk-ch"><input type="radio" name="lkq" value="' + k + '"><span>' + esc(q.choices[k]) + '<\/span><\/label>').join('')
+          + '<div class="lk-row"><button class="lk-btn lk-strong" type="submit">答える<\/button><button class="lk-btn" type="button" data-lk-stop>やめる<\/button><\/div><\/form><div data-lk-out><\/div><\/div>';
+        const sy = area.querySelector('[data-lk-say]'); if (sy) sy.addEventListener('click', () => opt.say(q.listen));
+        area.querySelector('[data-lk-stop]').addEventListener('click', () => { reviewing = false; draw(); });
+        area.querySelector('[data-lk-form]').addEventListener('submit', e => {
+          e.preventDefault();
+          const sel = area.querySelector('input[name="lkq"]:checked'); if (!sel) return;
+          const v = +sel.value, ok = v === q.answer; mark(keys[idx], ok); save();
+          area.querySelector('[data-lk-form] .lk-row').remove(); area.querySelectorAll('input[name="lkq"]').forEach(x => { x.disabled = true; });
+          area.querySelector('[data-lk-out]').innerHTML = '<div class="lk-res ' + (ok ? 'lk-ok' : 'lk-ng') + '"><b>' + (ok ? '正解！ 箱から抜けました' : 'もう一歩（正解: ' + esc(q.choices[q.answer]) + '）') + '<\/b>'
+            + (q.explain ? '<br>' + esc(q.explain) : '') + feedback(q, v, ok) + '<\/div><div class="lk-row"><button class="lk-btn lk-strong" type="button" data-lk-next>' + (idx + 1 < keys.length ? '次の問い' : '終わる') + '<\/button><\/div>';
+          area.querySelector('[data-lk-next]').addEventListener('click', () => { idx++; show(); });
+        });
+      };
+      show();
+    }
+
+    // last(): 1 問ごとの最後の結果の写し { '<段の id>#<問の番号>': 1（正解）| 0（不正解） }。分野より細かい集計（中分類のレーダーなど）に使う
+    return { feedback, record, draw, stats, review, box: () => Object.keys(st.box).filter(qOf), last: () => Object.assign({}, st.last) };
+  }
+  window.LearnKit = { create };
+})();
+</script>
+<script type="text/plain" class="app-js">
+(function(){
+'use strict';
+const KANA=['ア','イ','ウ','エ'];
+let P=null, U={}, Q={}, ORDER=[];
+const KEY='itpass105-v1';
+let S={pass:{},streak:0,best:0,exams:[],cur:null};
+let kit=null;
+// 1 問ごとの最後の結果は学びの部品の記録を正とする（kit.last() は写し）
+function kitLast(){return kit?kit.last():{};}
+const kk=qid=>{const [u,n]=qid.split('-');return u+'#'+(n-1);};
+const kq=k=>{const [u,i]=k.split('#');return u+'-'+(+i+1);};
+function load(){try{const t=localStorage.getItem(KEY);if(t){const v=JSON.parse(t);delete v.ans;delete v.box;S=Object.assign(S,v);}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('show'),2600);}
+const pct=(a,b)=>b?Math.round(a/b*100):0;
+
+// 問題文: 「|」の行は表、プログラムらしい行は等幅の枠、ほかは段落
+const CODE=/^(\s{2,}|　|○|◯|整数型|実数型|文字列型|論理型|if |elseif|else$|endif|while|endwhile|for |endfor|return|do$|[0-9]+:)/;
+function rich(text){
+  const L=String(text).split('\n');let h='',i=0;
+  while(i<L.length){
+    if(/^\s*\|/.test(L[i])){let r='';while(i<L.length&&/^\s*\|/.test(L[i])){const c=L[i].trim().replace(/^\||\|$/g,'').split('|');if(!c.every(x=>/^\s*:?-{2,}:?\s*$/.test(x)))r+='<tr>'+c.map(x=>'<td>'+esc(x.trim())+'</td>').join('')+'</tr>';i++;}h+='<table class="qt">'+r+'</table>';}
+    else if(CODE.test(L[i])){let r=[];while(i<L.length&&(CODE.test(L[i])||(r.length&&L[i].trim()!==''&&!/[。？]$/.test(L[i].trim())&&!/^\s*\|/.test(L[i])))){r.push(L[i]);i++;}h+='<pre>'+esc(r.join('\n'))+'</pre>';}
+    else{if(L[i].trim())h+='<p>'+esc(L[i])+'</p>';i++;}
+  }
+  return h;
+}
+
+// 成績
+function rateOf(qids){const L=kitLast();let a=0,c=0;for(const id of qids){const v=L[kk(id)];if(v!==undefined){a++;if(v)c++;}}return{a,c,n:qids.length,p:a?c/a:0};}
+function record(qid,ok,pick){
+  const [uid,n]=qid.split('-'),u=U[uid],res=u.questions.map(()=>null),ch=u.questions.map(()=>null);
+  res[n-1]=ok;ch[n-1]=pick;kit.record(u,res,ch);
+  if(ok){S.streak++;S.best=Math.max(S.best,S.streak);if(S.streak%5===0)toast(S.streak+' 問 連続正解！その調子です');}
+  else S.streak=0;
+  save();
+}
+const boxN=()=>kit?kit.box().length:0;
+
+function meter(){
+  const L=kitLast(),passN=Object.keys(S.pass).length,all=Object.keys(L),c=all.filter(k=>L[k]).length;
+  $('#meter').innerHTML=`<div><b>${passN}<small>/${ORDER.length}</small></b><span>合格した段</span></div><div><b>${pct(c,all.length)}%</b><span>正解率（${all.length}問）</span></div><div><b>${S.streak}</b><span>連続正解（最高 ${S.best}）</span></div><div><b>${boxN()}</b><span>復習の箱</span></div>`;
+  const v=(location.hash.split('/')[0]||'#home').slice(1);
+  const tabs=[['home','段の一覧'],['stats','成績とレーダー'],['box','復習の箱'],['exam','模擬試験'],['help','使い方']];
+  $('#tabs').innerHTML=tabs.map(([k,n])=>`<a href="#${k}" class="${v===k||(k==='home'&&v==='u')?'on':''}">${n}${k==='box'&&boxN()?`<span class="cnt">${boxN()}</span>`:''}</a>`).join('');
+}
+
+// 次にやる段: 弱い中分類から
+function weakMids(){
+  return P.mids.map(m=>{const qids=ORDER.filter(id=>U[id].mid===m.no).flatMap(id=>U[id].questions.map((_,i)=>id+'-'+(i+1)));const r=rateOf(qids);return Object.assign({},m,r);})
+    .sort((x,y)=>(x.a?x.p:1.01)-(y.a?y.p:1.01)||(x.a/x.n)-(y.a/y.n));
+}
+function nextUnits(k){
+  const out=[];
+  for(const m of weakMids()){
+    if(m.a&&m.p>=.8&&ORDER.filter(id=>U[id].mid===m.no).every(id=>S.pass[id]))continue;
+    const us=ORDER.filter(id=>U[id].mid===m.no);
+    const L=kitLast(),wrongCnt=id=>U[id].questions.filter((_,i)=>L[id+'#'+i]===0).length;
+    const pick=us.filter(id=>!S.pass[id]).sort((a,b)=>wrongCnt(b)-wrongCnt(a))[0];
+    if(pick)out.push({id:pick,m,why:m.a?`「${m.name}」の正解率 ${Math.round(m.p*100)}%`:`「${m.name}」はまだ解いていません`});
+    if(out.length>=k)break;
+  }
+  return out;
+}
+
+function vHome(){
+  const nx=nextUnits(1)[0];
+  let h=`<div class="panel"><div class="row" style="justify-content:space-between"><div><h2>次にやる段</h2><div class="sub">${nx?esc(nx.why)+' → ここから':'全部の段に合格しました。模擬試験で仕上げましょう'}</div></div>${nx?`<a class="btn" href="#u/${nx.id}">${nx.id} ${esc(U[nx.id].title)} を開く</a>`:'<a class="btn" href="#exam">模擬試験へ</a>'}</div></div>`;
+  for(const k of 'SMT'){
+    const ids=ORDER.filter(id=>U[id].field===k),pn=ids.filter(id=>S.pass[id]).length;
+    h+=`<div class="part-h"><span class="dot" style="background:var(--${k})"></span><h2>${P.fields[k]}</h2><span class="sub">${pn}/${ids.length} 段</span><div class="bar"><i style="width:${pct(pn,ids.length)}%;background:var(--${k})"></i></div></div>`;
+    for(const m of P.mids.filter(m=>m.part===k)){
+      h+=`<div class="mid">中分類 ${m.no}　${esc(m.name)}</div><div class="units">`;
+      for(const id of ids.filter(id=>U[id].mid===m.no)){
+        const u=U[id],L=kitLast(),done=u.questions.filter((_,i)=>L[id+'#'+i]!==undefined).length;
+        h+=`<a class="ucard ${S.pass[id]?'pass':''}" href="#u/${id}"><span class="uid">${id}</span><span class="ut">${esc(u.title)}</span><span class="mk">${S.pass[id]?'<span class="seal">合格</span>':done?done+'/'+u.questions.length:''}</span></a>`;
+      }
+      h+='</div>';
+    }
+  }
+  return h;
+}
+
+// 問いの描画（段・復習の箱・模擬の解説で共通）
+function qHTML(qid,opt){
+  const [uid,n]=qid.split('-'),u=U[uid],q=u.questions[n-1];
+  return `<div class="q" id="q-${qid}" data-qid="${qid}"><div class="qh">${opt&&opt.label?esc(opt.label):'問 '+n}${q.source?'　<span class="tag past">過去問</span>':''}</div>${rich(q.q)}<div class="choices">${q.choices.map((c,i)=>`<button class="choice" data-i="${i}"><span class="k">${KANA[i]}</span><span>${esc(c)}</span></button>`).join('')}</div><div class="fbx"></div></div>`;
+}
+function feedback(qid,pick){
+  const [uid,n]=qid.split('-'),u=U[uid],q=u.questions[n-1],ok=pick===q.answer;
+  let h=`<div class="fb ${ok?'ok':'ng'}"><h4>${ok?'⭕ 正解！':pick<0?'— 答えていません。正解は '+KANA[q.answer]:'❌ ざんねん。正解は '+KANA[q.answer]+'「'+esc(q.choices[q.answer])+'」'}</h4>${kit.feedback(q,pick,ok)}`;
+  if(!ok){
+    const sim=[],see=(q.see||[]).filter(s=>U[s]);
+    u.questions.forEach((x,i)=>{if(i!==n-1&&x.section===q.section)sim.push(uid+'-'+(i+1));});
+    for(const s of see)sim.push(s+'-1');
+    if(see.length)h+=`<p>混ざりやすい段：${see.map(s=>`<a href="#u/${s}">${s} ${esc(U[s].title)}</a>`).join('、')}</p>`;
+    if(sim.length)h+=`<p>似た問いで確かめる：${sim.slice(0,3).map(x=>`<a href="#u/${x.split('-')[0]}/q${x.split('-')[1]}">${x.split('-')[0]} 問${x.split('-')[1]}</a>`).join('、')}</p>`;
+  }
+  return h+'</div>';
+}
+function paint(el,qid,pick){
+  const q=U[qid.split('-')[0]].questions[qid.split('-')[1]-1];
+  el.querySelectorAll('.choice').forEach(b=>{const i=+b.dataset.i;b.disabled=true;if(i===q.answer)b.classList.add('ok');else if(i===pick)b.classList.add('ng');});
+  el.querySelector('.fbx').innerHTML=feedback(qid,pick);el.querySelectorAll('[data-lk-go]').forEach(b=>b.dataset.lkSec=q.section);
+}
+
+let tries={};// 段ごとの今回の答え
+let pendingSec=null;// 「読み直す所」で開く見出し
+function vUnit(uid,sub){
+  const u=U[uid];if(!u)return '<p>段が見つかりません。</p>';
+  const i=ORDER.indexOf(uid),prev=ORDER[i-1],next=ORDER[i+1];
+  const mid=P.mids[u.mid-1];
+  const t=tries[uid]||{};
+  let h=`<div class="panel"><div class="row" style="justify-content:space-between"><a href="#home">← 一覧</a><span class="row">${prev?`<a href="#u/${prev}">← ${prev}</a>`:''}${next?`<a href="#u/${next}">${next} →</a>`:''}</span></div>
+  <div style="margin-top:8px"><span class="tag" style="border-color:var(--${u.field});color:var(--${u.field})">${P.fields[u.field]}</span><span class="tag">中分類 ${mid.no} ${esc(mid.name)}</span>${u.sho.map(s=>`<span class="tag">小分類 ${s} ${esc(P.sho[s].name)}</span>`).join('')}</div>
+  <div class="row" style="justify-content:space-between;margin-top:6px"><h2>${uid}　${esc(u.title)}</h2>${S.pass[uid]?'<span class="seal big">合格</span>':''}</div>
+  <p class="sub">🎯 この段のゴール：${esc(u.goal)}</p>
+  ${u.sections.map(s=>`<section class="sec ${pendingSec===s.id?'lk-target':''}" id="sec-${uid}-${s.id}"><h3>${esc(s.h)}</h3>${rich(s.body)}</section>`).join('')}
+  <div class="memo">💡 <b>覚え方のこつ</b>：${esc(u.memo)}</div>
+  <p class="sub">出てくる用語：${esc(u.terms)}</p></div>
+  <div class="panel" id="test"><div class="row" style="justify-content:space-between"><h2>理解度テスト（${u.questions.length} 問・全問正解で合格）</h2><button class="btn ghost" id="retry">もう一度解く</button></div>
+  ${u.questions.map((q,k)=>(q.source&&!(k&&u.questions[k-1].source)?'<h3 style="margin-top:16px">本番の過去問で確かめる（IPA 公開問題・出典つき）</h3>':'')+qHTML(uid+'-'+(k+1))).join('')}<div id="verdict"></div></div>`;
+  setTimeout(()=>{
+    document.querySelectorAll('#test .q').forEach(el=>{
+      const qid=el.dataset.qid;
+      if(t[qid]!==undefined)paint(el,qid,t[qid]);
+      el.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{
+        const pick=+b.dataset.i,ok=pick===U[uid].questions[qid.split('-')[1]-1].answer;
+        (tries[uid]=tries[uid]||{})[qid]=pick;record(qid,ok,pick);
+        paint(el,qid,pick);verdict(uid);meter();
+      });
+    });
+    $('#retry').onclick=()=>{delete tries[uid];route();window.scrollTo({top:$('#test').offsetTop-60});};
+    verdict(uid,true);
+    if(sub){const el=sub[0]==='q'?document.getElementById('q-'+uid+'-'+sub.slice(1)):document.getElementById('sec-'+uid+'-'+sub);if(el){el.scrollIntoView({block:'start'});el.classList.add('flash');}}
+    else if(!pendingSec)window.scrollTo(0,0);
+    pendingSec=null;
+  });
+  return h;
+}
+function verdict(uid,quiet){
+  const t=tries[uid]||{},u=U[uid],N=u.questions.length,n=Object.keys(t).length;
+  if(n<N){$('#verdict').innerHTML=n?`<p class="sub">あと ${N-n} 問</p>`:'';return;}
+  const c=u.questions.filter((q,k)=>t[uid+'-'+(k+1)]===q.answer).length;
+  if(c===N){const first=!S.pass[uid];S.pass[uid]=1;save();
+    const nx=ORDER[ORDER.indexOf(uid)+1];
+    $('#verdict').innerHTML=`<div class="fb ok row"><span class="seal big">合格</span><div><h4>${uid} 合格！ ${N} 問すべて正解です</h4>${nx?`<a class="btn" href="#u/${nx}">次の段 ${nx} へ</a>`:''} <a href="#stats">レーダーを見る</a></div></div>`;
+    if(first&&!quiet)toast('🎉 '+uid+' に合格！ 合格の印が付きました');meter();}
+  else $('#verdict').innerHTML=`<div class="fb ng"><h4>${c}/${N} 正解。あと一歩！</h4><p>間違えた問いの「読み直す」を読んでから「もう一度解く」を押しましょう。間違えた問いは復習の箱にも入っています。</p></div>`;
+}
+
+function vBox(){
+  const keys=kit.box();
+  if(!keys.length)return `<div class="panel"><h2>復習の箱</h2><p>箱は空です 🎉 間違えた問いはここにたまり、正解すると抜けます。</p><a href="#home">段の一覧へ</a></div>`;
+  setTimeout(()=>{if(!document.querySelector('#lk-review .lk-card'))kit.review();});
+  return `<div class="panel"><h2>復習の箱（${keys.length} 問）</h2><p class="sub">上の板で 1 問ずつ出し直します。正解すると箱から抜け、間違えると残ります。</p>
+  <details><summary>箱の中の問いを全部見る</summary><ul>${keys.map(kq).map(x=>`<li><a href="#u/${x.split('-')[0]}/q${x.split('-')[1]}">${x.split('-')[0]} 問${x.split('-')[1]}</a> ${esc(U[x.split('-')[0]].title)}</li>`).join('')}</ul></details></div>`;
+}
+
+// レーダーチャート（SVG・1 系列＋合格の目安の線）
+function radar(items,o){
+  const W=o.w,H=o.h,cx=W/2,cy=H/2,R=o.r,N=items.length;
+  const ang=i=>-Math.PI/2+2*Math.PI*i/N,pt=(i,v)=>[cx+Math.cos(ang(i))*R*v,cy+Math.sin(ang(i))*R*v];
+  const poly=v=>items.map((_,i)=>pt(i,typeof v==='function'?v(i):v).map(x=>x.toFixed(1)).join(',')).join(' ');
+  let s=`<svg class="radar" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title)}">`;
+  for(const g of [.2,.4,.6,.8,1])s+=`<polygon class="grid" points="${poly(g)}"/>`;
+  items.forEach((_,i)=>{const [x,y]=pt(i,1);s+=`<line class="grid" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;});
+  s+=`<polygon class="pass" points="${poly(.6)}"/>`;
+  s+=`<polygon class="area" points="${poly(i=>Math.max(items[i].v,.02))}"/>`;
+  items.forEach((it,i)=>{const [x,y]=pt(i,Math.max(it.v,.02)),[lx,ly]=pt(i,1+o.lab/R),a=Math.cos(ang(i));
+    const anchor=Math.abs(a)<.2?'middle':a>0?'start':'end';
+    s+=`<circle class="pt" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4"/><circle class="hit" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="12"><title>${esc(it.full)}：${it.a?Math.round(it.v*100)+'%（'+it.c+'/'+it.a+'問）':'まだ解いていません'}</title></circle>`;
+    s+=`<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}" dominant-baseline="middle">${esc(it.label)}</text>`;});
+  return s+'</svg>';
+}
+function vStats(){
+    const mids=P.mids.map(m=>{const qids=ORDER.filter(id=>U[id].mid===m.no).flatMap(id=>U[id].questions.map((_,i)=>id+'-'+(i+1)));const r=rateOf(qids);return{m,label:String(m.no),full:'中分類 '+m.no+' '+m.name,v:r.p,a:r.a,c:r.c,n:r.n};});
+  const rec=nextUnits(3);
+  const last=S.exams[S.exams.length-1];
+  return `<div class="panel"><h2>中分類ごとのレーダーチャート</h2><p class="sub">3 つの分野は上の板に、ここでは 23 の中分類を細かく見ます。各問の「いちばん新しい答え」で数えます（段のテスト・復習の箱・模擬試験のどれも入ります）。点線は 60%（合格の目安）。</p>
+  <h3>中分類（23）</h3>${radar(mids,{w:420,h:400,r:150,lab:14,title:'中分類ごとの正解率'})}<div class="sub">数字は中分類の番号（下の表）</div>
+  <div class="legend"><span><i></i>今の正解率</span><span><i class="p"></i>60%（合格の目安）</span></div></div>
+  <div class="panel"><h2>次にやる段（弱い所から）</h2><div class="rec">${rec.length?rec.map(r=>`<a href="#u/${r.id}"><b>${r.id} ${esc(U[r.id].title)}</b><div class="sub">${esc(r.why)}</div></a>`).join(''):'<p>どの中分類も 80% 以上で、段も合格済みです。模擬試験で仕上げましょう。</p>'}</div>
+  ${last?`<p class="sub" style="margin-top:8px">前回の模擬試験：総合 ${last.total}／ストラテジ ${last.S}・マネジメント ${last.M}・テクノロジ ${last.T}（${last.pass?'合格ライン到達':'合格ラインまであと少し'}）</p>`:''}</div>
+  <div class="panel"><h2>表で見る</h2><table class="stat"><tr><th>番号</th><th>中分類</th><th>分野</th><th class="n">正解率</th><th class="n">解いた</th></tr>
+  ${mids.map(x=>`<tr><td>${x.m.no}</td><td>${esc(x.m.name)}</td><td><span class="dot" style="background:var(--${x.m.part})"></span> ${P.fields[x.m.part].replace('系','')}</td><td class="n">${x.a?Math.round(x.v*100)+'%':'—'}</td><td class="n">${x.a}/${x.n}</td></tr>`).join('')}</table>
+  <div class="row" style="margin-top:10px"><button class="btn ghost" id="reset">成績を全部消す</button><span class="sub">成績はこの端末の中（ブラウザ）だけに残ります。</span></div></div>`;
+}
+
+// 模擬試験
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function newExam(){
+  const qs=[];
+  for(const k of 'SMT'){const pool=ORDER.filter(id=>U[id].field===k).flatMap(id=>U[id].questions.map((_,i)=>id+'-'+(i+1)));qs.push(...shuffle(pool).slice(0,P.exam.mix[k]));}
+  S.cur={qs,ans:{},flag:{},start:Date.now(),i:0};save();
+}
+let tick=null;
+function left(){return S.cur?Math.max(0,S.cur.start+P.exam.minutes*60000-Date.now()):0;}
+function fmt(ms){const s=Math.ceil(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+function vExam(){
+  clearInterval(tick);
+  if(!S.cur){
+    const hist=S.exams.slice(-5).reverse();
+    return `<div class="panel"><h2>模擬試験（本番形式）</h2><p>100 問・120 分。ストラテジ系 35・マネジメント系 20・テクノロジ系 45 問を、講座の問いから毎回くじ引きで出します。</p>
+    <p><b>合格の線</b>：総合 600 点以上（1000 点満点）<b>かつ</b> 3 分野それぞれ 300 点以上。</p>
+    <p class="sub">本番は問いごとに配点が違う方式（IRT）で採点されます。ここでは正解の数から点を出す目安です。間違えた問いは復習の箱に入ります。</p>
+    <button class="btn" id="start">始める（120 分の計時が始まります）</button>
+    ${hist.length?`<h3 style="margin-top:14px">これまでの結果</h3><table class="stat"><tr><th>日時</th><th class="n">総合</th><th class="n">ストラテジ</th><th class="n">マネジメント</th><th class="n">テクノロジ</th><th>判定</th></tr>${hist.map(e=>`<tr><td>${esc(e.date)}</td><td class="n">${e.total}</td><td class="n">${e.S}</td><td class="n">${e.M}</td><td class="n">${e.T}</td><td class="pf ${e.pass?'y':'n'}">${e.pass?'合格':'不合格'}</td></tr>`).join('')}</table>`:''}</div>`;
+  }
+  const c=S.cur,qid=c.qs[c.i];
+  const h=`<div class="exam-top"><span class="timer" id="timer">${fmt(left())}</span><span class="sub">${Object.keys(c.ans).length}/100 答えた</span><button class="btn" id="finish">採点する</button></div>
+  <div class="panel"><div class="qh" style="font-family:var(--head)">問 ${c.i+1} / 100　<span class="tag">${P.fields[U[qid.split('-')[0]].field]}</span></div>
+  ${rich(U[qid.split('-')[0]].questions[qid.split('-')[1]-1].q)}
+  <div class="choices">${U[qid.split('-')[0]].questions[qid.split('-')[1]-1].choices.map((x,i)=>`<button class="choice ${c.ans[qid]===i?'sel':''}" data-i="${i}"><span class="k">${KANA[i]}</span><span>${esc(x)}</span></button>`).join('')}</div>
+  <div class="row" style="justify-content:space-between;margin-top:12px"><button class="btn ghost" id="prev" ${c.i?'':'disabled'}>← 前</button><label class="sub"><input type="checkbox" id="flag" ${c.flag[qid]?'checked':''}> あとで見直す</label><button class="btn ghost" id="next" ${c.i<99?'':'disabled'}>次 →</button></div></div>
+  <div class="panel"><div class="sub">問いの一覧（色＝答えた・枠＝見直す）</div><div class="qnav">${c.qs.map((x,i)=>`<button data-j="${i}" class="${c.ans[x]!==undefined?'done':''} ${i===c.i?'cur':''} ${c.flag[x]?'flag':''}">${i+1}</button>`).join('')}</div></div>`;
+  setTimeout(()=>{
+    const go=j=>{c.i=j;save();route();window.scrollTo(0,0);};
+    document.querySelectorAll('#main .choice').forEach(b=>b.onclick=()=>{c.ans[qid]=+b.dataset.i;save();route();});
+    $('#prev').onclick=()=>go(c.i-1);$('#next').onclick=()=>go(c.i+1);
+    $('#flag').onchange=e=>{c.flag[qid]=e.target.checked;save();route();};
+    document.querySelectorAll('.qnav button').forEach(b=>b.onclick=()=>go(+b.dataset.j));
+    $('#finish').onclick=()=>{const n=100-Object.keys(c.ans).length;if(!n||confirm('まだ答えていない問いが '+n+' 問あります。採点しますか？'))grade();};
+    tick=setInterval(()=>{const t=$('#timer');if(!t){clearInterval(tick);return;}const l=left();t.textContent=fmt(l);if(l<=0){clearInterval(tick);toast('120 分たちました。採点します');grade();}},1000);
+  });
+  return h;
+}
+let lastResult=null;
+function grade(){
+  const c=S.cur,by={S:[0,0],M:[0,0],T:[0,0]},wrong=[],per={};
+  for(const qid of c.qs){const [uid,n]=qid.split('-'),k=U[uid].field,pick=c.ans[qid]===undefined?-1:c.ans[qid],ok=pick===U[uid].questions[n-1].answer;by[k][1]++;if(ok)by[k][0]++;else wrong.push(qid);
+    const r=per[uid]=per[uid]||{res:U[uid].questions.map(()=>null),ch:U[uid].questions.map(()=>null)};r.res[n-1]=ok;r.ch[n-1]=pick;}
+  for(const uid in per)kit.record(U[uid],per[uid].res,per[uid].ch);
+  const sc=k=>Math.round(by[k][0]/by[k][1]*1000),tot=Math.round((by.S[0]+by.M[0]+by.T[0])/c.qs.length*1000);
+  const e={date:new Date().toLocaleString('ja-JP'),total:tot,S:sc('S'),M:sc('M'),T:sc('T')};
+  e.pass=e.total>=P.exam.total&&e.S>=P.exam.part&&e.M>=P.exam.part&&e.T>=P.exam.part;
+  S.exams.push(e);lastResult={e,wrong,ans:c.ans};S.cur=null;save();clearInterval(tick);location.hash='#result';route();
+}
+function vResult(){
+  if(!lastResult)return vExam();
+  const {e,wrong,ans}=lastResult;
+  setTimeout(()=>{document.querySelectorAll('#main .q').forEach(el=>{const qid=el.dataset.qid;el.querySelectorAll('.choice').forEach(b=>b.disabled=true);if(ans[qid]!==undefined)paint(el,qid,ans[qid]);else{paint(el,qid,-1);}});});
+  const line=(k,n)=>`<tr><td>${n}</td><td class="n">${e[k]} 点</td><td class="pf ${e[k]>=(k==='total'?P.exam.total:P.exam.part)?'y':'n'}">${e[k]>=(k==='total'?P.exam.total:P.exam.part)?'線を越えた':'まだ線の下'}</td></tr>`;
+  return `<div class="panel"><h2>模擬試験の結果</h2><div class="row" style="gap:16px;margin:8px 0"><span class="res-big pf ${e.pass?'y':'n'}">${e.pass?'合格ライン到達！':'不合格（あと少し）'}</span>${e.pass?'<span class="seal big">合格</span>':''}</div>
+  <table class="stat"><tr><th>区分</th><th class="n">点（1000 点満点）</th><th>合否の線</th></tr>${line('total','総合（600 点）')}${line('S','ストラテジ系（300 点）')}${line('M','マネジメント系（300 点）')}${line('T','テクノロジ系（300 点）')}</table>
+  <div class="row" style="margin-top:10px"><a class="btn" href="#stats">レーダーで弱い所を見る</a><a class="btn ghost" href="#box">復習の箱へ（${boxN()}）</a><a class="btn ghost" href="#exam">もう一度受ける</a></div></div>
+  <div class="panel"><h2>間違えた・答えなかった問い（${wrong.length}）</h2><p class="sub">それぞれに読み直す段と対策が出ています。全部、復習の箱に入りました。</p>${wrong.map((qid,i)=>qHTML(qid,{label:(i+1)+'. '+qid.replace('-',' 問')+' '+U[qid.split('-')[0]].title})).join('')}</div>`;
+}
+
+function vHelp(){
+  return `<div class="panel"><h2>使い方</h2><ul>
+  <li><b>段の一覧</b>：105 の段を、試験の 3 分野と 23 の中分類に分けて並べています。どこからでも始められます。</li>
+  <li><b>段</b>：説明を読み、最後の問い（本番と同じ ア〜エ の 4 択）を解きます。講座の 4 問に続いて、IPA が公開している本番の過去問（出典つき）も解けます。全問正解で<span class="seal">合格</span>の印が付きます。</li>
+  <li><b>間違えたら</b>：正解の理由・ほかの選択肢が違うわけ・覚え方のこつに加えて、「どの段のどこを読み直すか」（押すとその場所へ飛びます）と対策が出ます。</li>
+  <li><b>復習の箱</b>：間違えた問いがたまります。正解するまで何度でも出し直し、正解すると抜けます。</li>
+  <li><b>成績とレーダー</b>：3 分野と 23 の中分類ごとの正解率を図にし、弱い所から「次にやる段」を勧めます。</li>
+  <li><b>模擬試験</b>：本番と同じ 100 問・120 分。総合 600 点かつ各分野 300 点の線で判定します。</li>
+  <li>成績はこの端末のブラウザの中だけに残ります（送られません）。</li></ul>
+  <p class="sub">出題範囲：${esc(P.syllabus)}。各段の 4 問はこの講座のために書いた物です。「過去問」の印の問いは IPA の公開問題を出典つきでそのまま使っています（IPA の決まり: 教育目的は許諾不要・出典を明記）。</p></div>`;
+}
+
+function route(){
+  clearInterval(tick);
+  const p=location.hash.slice(1).split('/');let h;
+  if(p[0]==='u')h=vUnit(p[1],p[2]);
+  else if(p[0]==='box')h=vBox();
+  else if(p[0]==='stats')h=vStats();
+  else if(p[0]==='exam')h=vExam();
+  else if(p[0]==='result')h=vResult();
+  else if(p[0]==='help')h=vHelp();
+  else h=vHome();
+  $('#main').innerHTML=h;meter();
+  const dash=['home','stats','box',''].includes(p[0]);$('#lk-dash').hidden=!dash;if(dash&&!document.querySelector('#lk-review .lk-card'))kit.draw();
+  const st=$('#start');if(st)st.onclick=()=>{newExam();route();window.scrollTo(0,0);};
+  const rs=$('#reset');if(rs)rs.onclick=()=>{if(confirm('成績・合格の印・復習の箱を全部消します。よろしいですか？')){S={pass:{},streak:0,best:0,exams:[],cur:null};tries={};save();try{localStorage.removeItem('learn-kit-'+P.programId);}catch(e){}location.reload();route();}};
+  if(p[0]!=='u')window.scrollTo(0,0);
+}
+
+load();
+Promise.resolve(window.__PROGRAM__).then(d=>{
+  P=d;for(const u of d.units){U[u.id]=u;ORDER.push(u.id);u.questions.forEach((q,i)=>Q[u.id+'-'+(i+1)]=q);}
+  const status=id=>S.pass[id]?'pass':(()=>{const L=kitLast(),v=U[id].questions.map((_,i)=>L[id+'#'+i]).filter(x=>x!==undefined);return !v.length?'todo':v.some(x=>!x)?'fail':'near';})();
+  const open=id=>{const h='#u/'+id+(pendingSec?'/'+pendingSec:'');if(location.hash===h)route();else location.hash=h;};
+  // 「読み直す所」のボタン: どの見出しかを覚えてから部品に渡す（部品は開いた後に .lk-target を光らせる）
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-lk-go]');if(b)pendingSec=b.dataset.lkSec||null;},true);
+  kit=LearnKit.create({program:P,status,open,mount:$('#lk-dash'),focus:'#main .sec.lk-target'});
+  $('#syl').textContent='全 '+ORDER.length+' 段・'+Object.keys(Q).length+' 問｜出題範囲：'+d.syllabus;
+  window.addEventListener('hashchange',route);route();
+}).catch(e=>{$('#main').innerHTML='<p>講座のデータを読めませんでした：'+esc(e.message)+'</p>';});
+})();
+</script>
+
+<script>
+(async()=>{
+const APP="itpass", KEYID="c4380a93e32158cd", STORE='mkey:'+APP;
+const $=s=>document.querySelector(s), b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const te=new TextEncoder(), td=new TextDecoder();
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+async function open(key,buf){ const u=new Uint8Array(buf); return crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(0,12)},key,u.slice(12)); }
+async function get(path){ const r=await fetch(path); if(!r.ok) throw new Error(path+' '+r.status); return r.arrayBuffer(); }
+async function unwrap(pass){
+  const kj=JSON.parse(td.decode(await get('key.json'))), base=await crypto.subtle.importKey('raw',te.encode(pass),'PBKDF2',false,['deriveKey']);
+  for(const s of kj.slots){
+    const kek=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(s.salt),iterations:kj.iter,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+    try{ return new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(s.iv)},kek,b64(s.wrapped))); }catch(e){}
+  }
+  return null;
+}
+async function boot(raw){
+  const key=await crypto.subtle.importKey('raw',raw,'AES-GCM',false,['decrypt']);
+  const d=JSON.parse(td.decode(await open(key,await get('data.bin'))));
+  window.__PROGRAM__=d.program; window.__JOURNEYS__=d.journeys||[]; window.__IMG__={}; window.__AUDIO__={};
+  $('#lock').remove(); document.body.classList.remove('locked');
+  for(const old of document.querySelectorAll('script.app-js')){ const s=document.createElement('script'); s.textContent=old.textContent; document.body.appendChild(s); }
+  const fill=async(map,dst,mime)=>{ for(const [k,f] of Object.entries(map||{})){ try{ dst[k]=URL.createObjectURL(new Blob([await open(key,await get(f))],{type:mime})); }catch(e){} } };
+  await fill(d.img,window.__IMG__,'image/jpeg'); if(window.__REDRAW__) window.__REDRAW__();
+  await fill(d.audio,window.__AUDIO__,'audio/mpeg');
+}
+let saved=null; try{ const v=JSON.parse(localStorage.getItem(STORE)||'null'); if(v&&v.id===KEYID) saved=b64(v.k); }catch(e){}
+if(saved){ try{ await boot(saved); return; }catch(e){} }
+$('#lock').hidden=false;
+$('#lockf').addEventListener('submit',async e=>{
+  e.preventDefault(); const m=$('#lock .msg'); m.textContent='確かめています…';
+  try{
+    const raw=await unwrap($('#pass').value);
+    if(!raw){ m.textContent='合言葉が違います。'; return; }
+    if($('#remember').checked){ try{ localStorage.setItem(STORE,JSON.stringify({id:KEYID,k:btoa(String.fromCharCode(...raw))})); }catch(e){} }
+    await boot(raw);
+  }catch(err){ m.textContent='開けませんでした。電波のある所で開き直してください。'; }
+});
+})();
+</script>
+
+</body></html>

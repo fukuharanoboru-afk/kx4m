@@ -1,0 +1,1 @@
+{"name": "ホテルの受付係の英会話（迎える側）", "short_name": "ホテル英語", "lang": "ja", "start_url": "./", "scope": "./", "display": "standalone", "background_color": "#ffffff", "theme_color": "#7a4f8f", "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]}
