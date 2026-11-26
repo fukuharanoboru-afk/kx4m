@@ -165,6 +165,12 @@ dialog#jdlg::backdrop{background:rgba(0,0,0,.45)}
 .lk-ok{background:var(--pass-soft)}
 .lk-ng{background:var(--fail-soft)}
 .lk-done{margin-top:12px;font-weight:700}
+.lk-basis{margin-top:8px;padding:8px 10px;border-radius:6px;background:var(--accent-soft);border:1px solid var(--line)}
+.lk-basis p{margin:0 0 6px}
+.lk-basis ul{margin:2px 0 6px;padding-left:1.2em}
+.lk-basis.lk-scene{background:var(--panel)}
+.lk-basis a.lk-btn{display:inline-block;text-decoration:none}
+.lk-arrive{background:var(--accent-soft);border-radius:6px;padding:6px 10px;font-size:.9rem;margin:8px 0}
 @keyframes lk-flash{0%{box-shadow:0 0 0 4px var(--near)}100%{box-shadow:0 0 0 0 transparent}}
 .lk-flash{animation:lk-flash 1.8s ease-out}
 @media (prefers-reduced-motion: reduce){.lk-flash{animation:none;outline:3px solid var(--near)}}
@@ -182,6 +188,11 @@ dialog#jdlg::backdrop{background:rgba(0,0,0,.45)}
  *     mount      → 成績の板（レーダーチャート・次にやる段・復習の箱）を描く要素
  *     focus      → 段を開いた後に光らせて見せる所（既定 '.learn'＝要点）
  *     say(text)  → 英文を流す（無ければ聞くボタンを出さない）
+ *   英会話 → 中高英語に戻す口（組み立てが載せる。正本は review/中高対応/map.tsv）:
+ *     問い.basis = { unit, title, points: [要点の文], eq }（中高英語の段）／{ scene: 1 }（場面の言い回し）
+ *     window.__LK_BASIS__ = { href: 中高英語の画面の道, to: 中高英語の programId }
+ *     不正解のとき「足りないのは中高英語の ◯◯」と要点を出し、ボタンで href#lk=段&q=問&to=…&from=… を開く。
+ *     中高英語の側（programId が to と同じ画面）はその段を開いて要点を光らせ、問 q を復習の箱に入れる（正解で抜ける）。
  *   採点のとき: html += kit.feedback(q, 選んだ番号, 正解か)   採点が終わったら: kit.record(unit, [正解か...], [選んだ番号...])
  * 成績と復習の箱はこの端末のブラウザ（localStorage 'learn-kit-<programId>'）に残す。
  */
@@ -215,18 +226,40 @@ dialog#jdlg::backdrop{background:rgba(0,0,0,.45)}
         if (ru) h += '<p><b>読み直す所<\/b> ' + esc(ru.id + '「' + ru.title + '」') + (r.where ? ' の ' + esc(r.where) : '')
           + ' <button class="lk-btn" type="button" data-lk-go="' + esc(ru.id) + '">' + esc(ru.id) + ' を開いて読む<\/button><\/p>';
         if (q.choices) h += '<p class="lk-note">この問いは復習の箱に入りました。正解するまで出し直します。<\/p>';
-        h += '<\/div>';
+        h += basisHTML(q.basis) + '<\/div>';
       }
       return h + '<\/div>';
     }
-    function go(id) {
+    function basisHTML(b) {
+      if (!b) return '';
+      if (b.scene) return '<div class="lk-basis lk-scene"><p><b>場面の言い回し<\/b> 中高英語の文法ではなく、この場面で決まって使う言い方・言葉です。上の対策のとおり、言い回しごと覚えましょう。<\/p><\/div>';
+      const L = window.__LK_BASIS__ || {}, h = '<div class="lk-basis"><p><b>足りないのは中高英語の「' + esc(b.title) + '」（' + esc(b.unit) + '）<\/b><\/p><ul>'
+        + (b.points || []).map(t => '<li>' + esc(t) + '<\/li>').join('') + '<\/ul>';
+      if (!L.href) return h + '<p class="lk-note">中高英語の ' + esc(b.unit) + ' を開いて、要点を読み直しましょう。<\/p><\/div>';
+      const href = L.href + '#lk=' + encodeURIComponent(b.unit) + '&q=' + (+b.eq || 0) + '&to=' + encodeURIComponent(L.to || '') + '&from=' + encodeURIComponent(P.programId || '');
+      return h + '<p><a class="lk-btn lk-strong" data-lk-basis href="' + esc(href) + '" target="_blank" rel="noopener">中高英語の ' + esc(b.unit) + ' を開いて学び直す<\/a><\/p>'
+        + '<p class="lk-note">中高英語の画面でこの段が開き、要点が光ります。段の問い 1 つが復習の箱に入るので、正解すると箱から抜けます。<\/p><\/div>';
+    }
+    function go(id, note) {
       opt.open(id);
       setTimeout(() => {
         const el = document.querySelector(focus); if (!el) return;
+        if (note) el.insertAdjacentHTML('beforebegin', '<p class="lk-arrive">' + esc(note) + '<\/p>');
         el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.remove('lk-flash'); void el.offsetWidth; el.classList.add('lk-flash');
       }, 60);
     }
     document.addEventListener('click', e => { const b = e.target.closest('[data-lk-go]'); if (b) { e.preventDefault(); go(b.dataset.lkGo); } });
+
+    /* ---------- 英会話から来たとき（#lk=段&q=問&to=この講座&from=英会話）: 段を開いて要点を光らせ、問を復習の箱へ ---------- */
+    function arrive() {
+      let m; try { m = new URLSearchParams((location.hash || '').replace(/^#/, '')); } catch (e) { return; }
+      const id = m.get('lk'); if (!id || m.get('to') !== (P.programId || '') || !units[id]) return;
+      const u = units[id], i = +m.get('q'), qi = u.questions[i] && u.questions[i].choices ? i : u.questions.findIndex(x => x.choices);
+      if (qi >= 0) { const k = id + '#' + qi; st.box[k] = { miss: ((st.box[k] || {}).miss || 0) + 1, at: Date.now(), from: m.get('from') || '' }; save(); }
+      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+      setTimeout(() => { draw(); go(id, '英会話で間違えた問いに要る段です。光っている要点を読んでから、成績の板の「復習の箱」で問いに答えましょう（正解すると箱から抜けます）。'); }, 0);
+    }
+    window.addEventListener('hashchange', arrive);
 
     /* ---------- 記録（1 問ごとの最後の結果と復習の箱） ---------- */
     function mark(k, ok) {
@@ -295,7 +328,7 @@ dialog#jdlg::backdrop{background:rgba(0,0,0,.45)}
       const show = () => {
         if (idx >= keys.length) { reviewing = false; draw(); const left = Object.keys(st.box).filter(qOf).length; const a = opt.mount.querySelector('#lk-review'); if (a) a.innerHTML = '<p class="lk-done">' + (left ? 'ひと回りしました。まだ ' + left + ' 問が箱に残っています。もう一度「復習する」で出し直します。' : '箱は空になりました。よくがんばりました！') + '<\/p>'; return; }
         const { u, i, q } = qOf(keys[idx]), ord = shuffle(q.choices.length);
-        area.innerHTML = '<div class="lk-card"><div class="lk-sub">復習 ' + (idx + 1) + ' / ' + keys.length + '　' + esc(u.id + '「' + u.title + '」') + '<\/div><p><b>' + esc(q.q) + '<\/b><\/p>'
+        area.innerHTML = '<div class="lk-card"><div class="lk-sub">復習 ' + (idx + 1) + ' / ' + keys.length + '　' + esc(u.id + '「' + u.title + '」') + (st.box[keys[idx]].from ? '　英会話から' : '') + '<\/div><p><b>' + esc(q.q) + '<\/b><\/p>'
           + (q.listen && opt.say ? '<button class="lk-btn" type="button" data-lk-say>英語を聞く<\/button>' : '')
           + '<form data-lk-form>' + ord.map(k => '<label class="lk-ch"><input type="radio" name="lkq" value="' + k + '"><span>' + esc(q.choices[k]) + '<\/span><\/label>').join('')
           + '<div class="lk-row"><button class="lk-btn lk-strong" type="submit">答える<\/button><button class="lk-btn" type="button" data-lk-stop>やめる<\/button><\/div><\/form><div data-lk-out><\/div><\/div>';
@@ -315,6 +348,7 @@ dialog#jdlg::backdrop{background:rgba(0,0,0,.45)}
     }
 
     // last(): 1 問ごとの最後の結果の写し { '<段の id>#<問の番号>': 1（正解）| 0（不正解） }。分野より細かい集計（中分類のレーダーなど）に使う
+    arrive();
     return { feedback, record, draw, stats, review, box: () => Object.keys(st.box).filter(qOf), last: () => Object.assign({}, st.last) };
   }
   window.LearnKit = { create };
@@ -569,6 +603,7 @@ function verdictHTML(u,c,t,wrong){
   return h;
 }
 
+window.__LK_BASIS__={"href": "../eng/", "to": "eng105"};
 /* ---------- アメリカ横断の旅（USB 版で足す） ---------- */
 const JS=window.__JOURNEYS__||[], IMG=window.__IMG__||{};
 let J=null, jChoosing=false, jPick=null;
@@ -712,7 +747,7 @@ Promise.resolve(window.__PROGRAM__).then(async data=>{
 
 <script>
 (async()=>{
-const APP="hotel", KEYID="7c430bf4d2c7456f", STORE='mkey:'+APP;
+const APP="hotel", KEYID="19376e5861e39a2f", STORE='mkey:'+APP;
 const $=s=>document.querySelector(s), b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const te=new TextEncoder(), td=new TextDecoder();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
